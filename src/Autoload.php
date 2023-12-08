@@ -33,9 +33,9 @@ function tearDown(Closure $callback): void
 /**
  * Define environment for the test case.
  *
- * @param  \Closure():void  $callback
+ * @param  \Closure(\Illuminate\Foundation\Application):void  $callback
  */
-function defineEnvironment(Closure $defineEnvironment): void
+function defineEnvironment(Closure $callback): void
 {
     Hook::create('@defineEnvironment', Backtrace::testFile(), $callback);
 }

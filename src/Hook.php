@@ -43,27 +43,10 @@ class Hook
     /**
      * Resolve the "setUp" hook.
      *
-     * @return \Closure(\Closure):(void)
+     * @return \Closure|null
      */
-    public static function unpack(string $type, string $fileOrMethod): Closure
+    public static function unpack(string $type, string $fileOrMethod, ?Closure $callback = null): ?Closure
     {
-        return static::$cachedHooks[$type][$fileOrMethod] ?? function ($callback) {
-            call_user_func($callback);
-        };
-    }
-
-    /**
-     * Flush the cached hooks.
-     */
-    public static function flush(): void
-    {
-        static::$cachedHooks = [
-            '@setUp' => [],
-            '@tearDown' => [],
-            '@defineEnvironment' => [],
-            '@defineRoutes' => [],
-            '@defineWebRoutes' => [],
-            '@defineDatabaseMigrations' => [],
-        ];
+        return static::$cachedHooks[$type][$fileOrMethod] ?? $callback;
     }
 }

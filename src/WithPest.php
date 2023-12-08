@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Pest;
 
+use Pest\Support\Closure;
 use Pest\TestSuite;
 
 trait WithPest
@@ -12,7 +13,9 @@ trait WithPest
     protected function setUpTheEnvironmentUsingPest(): void
     {
         $this->setUpTheEnvironmentUsing(
-            Hook::unpack('@setUp', TestSuite::getInstance()->getFilename())
+            Hook::unpack('@setUp', TestSuite::getInstance()->getFilename(), function ($callback) {
+                call_user_func($callback);
+            })
         );
     }
 
@@ -22,7 +25,18 @@ trait WithPest
     protected function tearDownTheEnvironmentUsingPest(): void
     {
         $this->tearDownTheEnvironmentUsing(
-            Hook::unpack('@tearDown', TestSuite::getInstance()->getFilename())
+            Hook::unpack('@tearDown', TestSuite::getInstance()->getFilename(), function ($callback) {
+                call_user_func($callback);
+            })
         );
+    }
+
+    protected function defineEnvironmentUsingPest($app): void
+    {
+        $callback = Hook::unpack('@defineEnvironment', TestSuite::getInstance()->getFilename(), function () {
+            //
+        });
+
+        call_user_func($callback, $app);
     }
 }
