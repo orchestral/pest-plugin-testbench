@@ -3,7 +3,11 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Attributes\WithMigration;
-use function Orchestra\Testbench\Pest\{afterApplicationCreated, beforeApplicationDestroyed, setUp, usesTestingFeature};
+
+use function Orchestra\Testbench\Pest\afterApplicationCreated;
+use function Orchestra\Testbench\Pest\beforeApplicationDestroyed;
+use function Orchestra\Testbench\Pest\setUp;
+use function Orchestra\Testbench\Pest\usesTestingFeature;
 
 setUp(function ($setUp) {
     afterApplicationCreated(function () {
