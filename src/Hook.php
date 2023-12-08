@@ -7,6 +7,8 @@ use Closure;
 /**
  * @phpstan-type TSetUpTearDownCallback \Closure():void
  * @phpstan-type TCallback \Closure(TSetUpTearDownCallback):void
+ *
+ * @internal
  */
 class Hook
 {
