@@ -10,21 +10,14 @@ trait WithPest
     protected function setUpTheEnvironmentUsingPest()
     {
         $this->setUpTheEnvironmentUsing(
-            Hook::$cachedSetUps[TestSuite::getInstance()->getFilename()] ?? function ($setUp) {
-                call_user_func($setUp);
-            }
+            Hook::resolveSetUpCallback(TestSuite::getInstance()->getFilename())
         );
     }
 
     protected function tearDownTheEnvironmentUsingPest()
     {
         $this->tearDownTheEnvironmentUsing(
-            Closure::bind(
-                Hook::$cachedTearDowns[TestSuite::getInstance()->getFilename()] ?? function ($tearDown) {
-                    call_user_func($tearDown);
-                },
-                $this
-            )
+            Hook::resolveTearDownCallback(TestSuite::getInstance()->getFilename())
         );
     }
 }

@@ -17,7 +17,7 @@ class Hook
      *
      * @phpstan-var array<string, TCallback|null>
      */
-    public static $cachedSetUps = [];
+    protected static $cachedSetUps = [];
 
     /**
      * The cached "tearDown" hooks.
@@ -26,7 +26,7 @@ class Hook
      *
      * @phpstan-var array<string, TCallback|null>
      */
-    public static $cachedTearDowns = [];
+    protected static $cachedTearDowns = [];
 
     /**
      * Define "setUp" hook for Pest test file.
@@ -41,6 +41,21 @@ class Hook
     }
 
     /**
+     * Resolve the "setUp" hook.
+     *
+     * @param  string  $file
+     * @return \Closure
+     *
+     * @phpstan-return TSetUpTearDownCallback
+     */
+    public static function resolveSetUpCallback(string $file): Closure
+    {
+        return static::$cachedSetUps[$file] ?? function ($setUp) {
+            call_user_func($setUp);
+        };
+    }
+
+    /**
      * Define "tearDown" hook for Pest test file.
      *
      * @param  (\Closure(\Closure):(void))|null  $callback
@@ -50,6 +65,21 @@ class Hook
     public static function tearDown(string $file, Closure $callback = null): void
     {
         static::$cachedTearDowns[$file] = $callback;
+    }
+
+    /**
+     * Resolve the "tearDown" hook.
+     *
+     * @param  string  $file
+     * @return \Closure
+     *
+     * @phpstan-return TSetUpTearDownCallback
+     */
+    public static function resolveTearDownCallback(string $file): Closure
+    {
+        return static::$cachedTearDowns[$file] ?? function ($tearDown) {
+            call_user_func($tearDown);
+        };
     }
 
     /**
