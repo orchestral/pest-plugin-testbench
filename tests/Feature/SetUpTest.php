@@ -2,14 +2,15 @@
 
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Attributes\WithMigration;
-use function Orchestra\Testbench\Pest\setUp;
+
+use function Orchestra\Testbench\Pest\{afterApplicationCreated, setUp, usesTestingFeature};
 
 setUp(function ($setUp) {
-    $this->afterApplicationCreated(function () {
+    afterApplicationCreated(function () {
         config(['testbench.setUp' => true]);
     });
 
-    $this->usesTestingFeature(new WithMigration('laravel', 'queue'));
+    usesTestingFeature(new WithMigration('laravel', 'queue'));
 
     $setUp();
 });
