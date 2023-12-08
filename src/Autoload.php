@@ -13,21 +13,31 @@ Plugin::uses(WithPest::class);
 /**
  * Define "setUp" hook for the test case.
  *
- * @param  \Closure(\Closure):void  $setUp
+ * @param  \Closure(\Closure):void  $callback
  */
-function setUp(Closure $setUp): void
+function setUp(Closure $callback): void
 {
-    Hook::create('@setUp', Backtrace::testFile(), $setUp);
+    Hook::create('@setUp', Backtrace::testFile(), $callback);
 }
 
 /**
  * Define "tearDown" hook for the test case.
  *
- * @param  \Closure(\Closure):void  $tearDown
+ * @param  \Closure(\Closure):void  $callback
  */
-function tearDown(Closure $tearDown): void
+function tearDown(Closure $callback): void
 {
-    Hook::create('@tearDown', Backtrace::testFile(), $tearDown);
+    Hook::create('@tearDown', Backtrace::testFile(), $callback);
+}
+
+/**
+ * Define environment for the test case.
+ *
+ * @param  \Closure():void  $callback
+ */
+function defineEnvironment(Closure $defineEnvironment): void
+{
+    Hook::create('@defineEnvironment', Backtrace::testFile(), $callback);
 }
 
 /**
