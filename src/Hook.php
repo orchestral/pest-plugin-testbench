@@ -17,7 +17,7 @@ class Hook
      *
      * @phpstan-var array<string, TCallback|null>
      */
-    public static $cachedSetUpHooks = [];
+    public static $cachedSetUps = [];
 
     /**
      * The cached "tearDown" hooks.
@@ -26,7 +26,7 @@ class Hook
      *
      * @phpstan-var array<string, TCallback|null>
      */
-    public static $cachedTearDownHooks = [];
+    public static $cachedTearDowns = [];
 
     /**
      * Define "setUp" hook for Pest test file.
@@ -37,7 +37,7 @@ class Hook
      */
     public static function setUp(string $file, Closure $callback = null): void
     {
-        static::$cachedSetUpHooks[$file] = $callback;
+        static::$cachedSetUps[$file] = $callback;
     }
 
     /**
@@ -49,6 +49,15 @@ class Hook
      */
     public static function tearDown(string $file, Closure $callback = null): void
     {
-        static::$cachedTearDownHooks[$file] = $callback;
+        static::$cachedTearDowns[$file] = $callback;
+    }
+
+    /**
+     * Flush the cached hooks.
+     */
+    public static function flush(): void
+    {
+        static::$cachedSetUps = [];
+        static::$cachedTearDowns = [];
     }
 }
