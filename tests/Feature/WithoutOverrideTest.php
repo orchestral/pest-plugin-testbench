@@ -12,7 +12,10 @@ setUp(function ($setUp) {
 it('can execute default setUpTheEnvironment via `setUp` helper', function () {
     expect($this->setUpHasRun)->toBe(true);
     expect($this->app)->toBeInstanceOf(Application::class);
+});
 
+it('does not leak between tests', function () {
+    expect($this->app->resolved('testbench.defined'))->toBe(false);
     expect(config('testbench.setUp'))->toBe(null);
     expect(config('testbench.tearDown'))->toBe(null);
 

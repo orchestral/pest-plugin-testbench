@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Pest;
 
+use Pest\Support\Closure;
 use Pest\TestSuite;
 
 trait WithPest
@@ -12,9 +13,9 @@ trait WithPest
     protected function setUpTheEnvironmentUsingPest(): void
     {
         $this->setUpTheEnvironmentUsing(
-            Hook::unpack('@setUp', TestSuite::getInstance()->getFilename(), function ($callback) {
+            Closure::bind(Hook::unpack('@setUp', TestSuite::getInstance()->getFilename(), function ($callback) {
                 call_user_func($callback);
-            })
+            }), $this)
         );
     }
 
@@ -24,9 +25,9 @@ trait WithPest
     protected function tearDownTheEnvironmentUsingPest(): void
     {
         $this->tearDownTheEnvironmentUsing(
-            Hook::unpack('@tearDown', TestSuite::getInstance()->getFilename(), function ($callback) {
+            Closure::bind(Hook::unpack('@tearDown', TestSuite::getInstance()->getFilename(), function ($callback) {
                 call_user_func($callback);
-            })
+            }), $this)
         );
     }
 
@@ -36,6 +37,33 @@ trait WithPest
             //
         });
 
-        call_user_func($callback, $app);
+        call_user_func(Closure::bind($callback, $this), $app);
+    }
+
+    protected function defineDatabaseMigrationsUsingPest(): void
+    {
+        $callback = Hook::unpack('@defineDatabase', TestSuite::getInstance()->getFilename(), function () {
+            //
+        });
+
+        call_user_func(Closure::bind($callback, $this));
+    }
+
+    protected function defineRoutesUsingPest($router): void
+    {
+        $callback = Hook::unpack('@defineRoutes', TestSuite::getInstance()->getFilename(), function () {
+            //
+        });
+
+        call_user_func(Closure::bind($callback, $this), $router);
+    }
+
+    protected function defineWebRoutesUsingPest($router): void
+    {
+        $callback = Hook::unpack('@defineWebRoutes', TestSuite::getInstance()->getFilename(), function () {
+            //
+        });
+
+        call_user_func(Closure::bind($callback, $this), $router);
     }
 }

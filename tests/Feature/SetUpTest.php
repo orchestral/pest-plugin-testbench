@@ -38,3 +38,7 @@ it('can resolve `usesTestingFeature` via `setUp` helper', function () {
     expect(Schema::hasTable('notifications'))->toBe(false);
     expect(Schema::hasTable('jobs'))->toBe(true);
 });
+
+it('does not leak between tests', function () {
+    expect($this->app->resolved('testbench.defined'))->toBe(false);
+});

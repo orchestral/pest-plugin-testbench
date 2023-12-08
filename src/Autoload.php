@@ -41,6 +41,37 @@ function defineEnvironment(Closure $callback): void
 }
 
 /**
+ * Define database migrations for the test case.
+ *
+ * @param  \Closure():void  $callback
+ */
+function defineDatabaseMigrations(Closure $callback): void
+{
+    Hook::create('@defineDatabaseMigrations', Backtrace::testFile(), $callback);
+}
+
+/**
+ * Define routes for the test case.
+ *
+ * @param  \Closure(\Illuminate\Http\Router):void  $callback
+ */
+function defineRoute(Closure $callback): void
+{
+    Hook::create('@defineRoute', Backtrace::testFile(), $callback);
+}
+
+/**
+ * Define web routes for the test case.
+ *
+ * @param  \Closure(\Illuminate\Http\Router):void  $callback
+ */
+function defineWebRoute(Closure $callback): void
+{
+    Hook::create('@defineWebRoute', Backtrace::testFile(), $callback);
+}
+
+
+/**
  * Define "afterApplicationCreated" hook for the test case.
  */
 function afterApplicationCreated(callable $callback): void
