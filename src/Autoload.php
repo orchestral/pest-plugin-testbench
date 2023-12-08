@@ -2,17 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Pest\PluginName;
+namespace Orchestra\Testbench\Pest;
 
+use Closure;
 use Pest\Plugin;
-use PHPUnit\Framework\TestCase;
+use Pest\Support\Backtrace;
+use Pest\TestSuite;
 
-Plugin::uses(Example::class);
+Plugin::uses(WithPest::class);
 
-/**
- * @return TestCase
- */
-function example(string $argument)
+function setUp(Closure $setUp): void
 {
-    return test()->example(...func_get_args()); // @phpstan-ignore-line
+    Hook::setUp(Backtrace::testFile(), $setUp);
+}
+
+function tearDown(Closure $tearDown): void
+{
+    Hook::tearDown(Backtrace::testFile(), $tearDown);
 }

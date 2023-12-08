@@ -11,13 +11,20 @@
             "src/Autoload.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Orchestra\\Testbench\\Pest\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": "^8.1",
         "pestphp/pest": "^2.5",
         "pestphp/pest-plugin": "^2.0.1"
     },
     "require-dev": {
-        "orchestra/testbench-core": "^8.16",
+        "laravel/framework": "^10.0",
+        "mockery/mockery": "^1.5.1",
+        "orchestra/testbench-core": "dev-interacts-with-pest",
         "pestphp/pest-dev-tools": "^2.9"
     },
     "config": {
@@ -28,12 +35,12 @@
         }
     },
     "scripts": {
-        "refacto": "rector",
-        "lint": "pint",
-        "test:refacto": "rector --dry-run",
-        "test:lint": "pint --test",
-        "test:types": "phpstan analyse --ansi",
-        "test:unit": "pest --colors=always",
+        "refacto": "@php vendor/bin/rector",
+        "lint": "@php vendor/bin/pint",
+        "test:refacto": "@refacto --dry-run",
+        "test:lint": "@lint --test",
+        "test:types": "@php vendor/bin/phpstan analyse --ansi",
+        "test:unit": "@php vendor/bin/pest --colors=always",
         "test": [
             "@test:refacto",
             "@test:lint",
