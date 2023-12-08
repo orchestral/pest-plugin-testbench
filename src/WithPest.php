@@ -13,7 +13,7 @@ trait WithPest
     protected function setUpTheEnvironmentUsingPest(): void
     {
         $this->setUpTheEnvironmentUsing(
-            Closure::bind(Hook::unpack('@setUp', TestSuite::getInstance()->getFilename(), function ($callback) {
+            Closure::bind(Hook::unpack('@setUp', TestSuite::getInstance()->getFilename(), function ($callback): void {
                 call_user_func($callback);
             }), $this)
         );
@@ -25,7 +25,7 @@ trait WithPest
     protected function tearDownTheEnvironmentUsingPest(): void
     {
         $this->tearDownTheEnvironmentUsing(
-            Closure::bind(Hook::unpack('@tearDown', TestSuite::getInstance()->getFilename(), function ($callback) {
+            Closure::bind(Hook::unpack('@tearDown', TestSuite::getInstance()->getFilename(), function ($callback): void {
                 call_user_func($callback);
             }), $this)
         );
@@ -33,7 +33,7 @@ trait WithPest
 
     protected function defineEnvironmentUsingPest($app): void
     {
-        $callback = Hook::unpack('@defineEnvironment', TestSuite::getInstance()->getFilename(), function () {
+        $callback = Hook::unpack('@defineEnvironment', TestSuite::getInstance()->getFilename(), function (): void {
             //
         });
 
@@ -42,7 +42,7 @@ trait WithPest
 
     protected function defineDatabaseMigrationsUsingPest(): void
     {
-        $callback = Hook::unpack('@defineDatabase', TestSuite::getInstance()->getFilename(), function () {
+        $callback = Hook::unpack('@defineDatabase', TestSuite::getInstance()->getFilename(), function (): void {
             //
         });
 
@@ -51,7 +51,7 @@ trait WithPest
 
     protected function defineRoutesUsingPest($router): void
     {
-        $callback = Hook::unpack('@defineRoutes', TestSuite::getInstance()->getFilename(), function () {
+        $callback = Hook::unpack('@defineRoutes', TestSuite::getInstance()->getFilename(), function (): void {
             //
         });
 
@@ -60,7 +60,7 @@ trait WithPest
 
     protected function defineWebRoutesUsingPest($router): void
     {
-        $callback = Hook::unpack('@defineWebRoutes', TestSuite::getInstance()->getFilename(), function () {
+        $callback = Hook::unpack('@defineWebRoutes', TestSuite::getInstance()->getFilename(), function (): void {
             //
         });
 

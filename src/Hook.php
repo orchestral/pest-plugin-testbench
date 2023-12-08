@@ -10,7 +10,7 @@ use Closure;
  *
  * @internal
  */
-class Hook
+final class Hook
 {
     /**
      * The cached hooks.
@@ -19,7 +19,7 @@ class Hook
      *
      * @phpstan-var array<string, TCallback|null>
      */
-    protected static $cachedHooks = [
+    private static array $cachedHooks = [
         '@setUp' => [],
         '@tearDown' => [],
         '@defineEnvironment' => [],
