@@ -17,7 +17,7 @@ Plugin::uses(WithPest::class);
  */
 function setUp(Closure $setUp): void
 {
-    Hook::setUp(Backtrace::testFile(), $setUp);
+    Hook::create('@setUp', Backtrace::testFile(), $setUp);
 }
 
 /**
@@ -27,7 +27,7 @@ function setUp(Closure $setUp): void
  */
 function tearDown(Closure $tearDown): void
 {
-    Hook::tearDown(Backtrace::testFile(), $tearDown);
+    Hook::create('@tearDown', Backtrace::testFile(), $tearDown);
 }
 
 /**

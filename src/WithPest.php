@@ -12,7 +12,7 @@ trait WithPest
     protected function setUpTheEnvironmentUsingPest(): void
     {
         $this->setUpTheEnvironmentUsing(
-            Hook::resolveSetUpCallback(TestSuite::getInstance()->getFilename())
+            Hook::unpack('@setUp', TestSuite::getInstance()->getFilename())
         );
     }
 
@@ -22,7 +22,7 @@ trait WithPest
     protected function tearDownTheEnvironmentUsingPest(): void
     {
         $this->tearDownTheEnvironmentUsing(
-            Hook::resolveTearDownCallback(TestSuite::getInstance()->getFilename())
+            Hook::unpack('@tearDown', TestSuite::getInstance()->getFilename())
         );
     }
 }

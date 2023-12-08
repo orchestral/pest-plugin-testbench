@@ -13,72 +13,42 @@ use Closure;
 class Hook
 {
     /**
-     * The cached "setUp" hooks.
+     * The cached hooks.
      *
      * @var array<string, \Closure|null>
      *
      * @phpstan-var array<string, TCallback|null>
      */
-    protected static $cachedSetUps = [];
+    protected static $cachedHooks = [
+        '@setUp' => [],
+        '@tearDown' => [],
+        '@defineEnvironment' => [],
+        '@defineRoutes' => [],
+        '@defineWebRoutes' => [],
+        '@defineDatabaseMigrations' => [],
+    ];
 
     /**
-     * The cached "tearDown" hooks.
-     *
-     * @var array<string, \Closure|null>
-     *
-     * @phpstan-var array<string, TCallback|null>
-     */
-    protected static $cachedTearDowns = [];
-
-    /**
-     * Define "setUp" hook for Pest test file.
+     * Define a hook for Pest test file.
      *
      * @param  (\Closure(\Closure):(void))|null  $callback
      *
      * @phpstan-param  TCallback|null  $callback
      */
-    public static function setUp(string $file, Closure $callback = null): void
+    public static function create(string $type, string $fileOrMethod, Closure $callback = null): void
     {
-        static::$cachedSetUps[$file] = $callback;
+        static::$cachedHooks[$type][$fileOrMethod] = $callback;
     }
 
     /**
      * Resolve the "setUp" hook.
      *
      * @return \Closure(\Closure):(void)
-     *
-     * @phpstan-return TCallback
      */
-    public static function resolveSetUpCallback(string $file): Closure
+    public static function unpack(string $type, string $fileOrMethod): Closure
     {
-        return static::$cachedSetUps[$file] ?? function ($setUp) {
-            call_user_func($setUp);
-        };
-    }
-
-    /**
-     * Define "tearDown" hook for Pest test file.
-     *
-     * @param  (\Closure(\Closure):(void))|null  $callback
-     *
-     * @phpstan-param  TCallback|null  $callback
-     */
-    public static function tearDown(string $file, Closure $callback = null): void
-    {
-        static::$cachedTearDowns[$file] = $callback;
-    }
-
-    /**
-     * Resolve the "tearDown" hook.
-     *
-     * @return \Closure(\Closure):(void)
-     *
-     * @phpstan-return TCallback
-     */
-    public static function resolveTearDownCallback(string $file): Closure
-    {
-        return static::$cachedTearDowns[$file] ?? function ($tearDown) {
-            call_user_func($tearDown);
+        return static::$cachedHooks[$type][$fileOrMethod] ?? function ($callback) {
+            call_user_func($callback);
         };
     }
 
@@ -87,7 +57,13 @@ class Hook
      */
     public static function flush(): void
     {
-        static::$cachedSetUps = [];
-        static::$cachedTearDowns = [];
+        static::$cachedHooks = [
+            '@setUp' => [],
+            '@tearDown' => [],
+            '@defineEnvironment' => [],
+            '@defineRoutes' => [],
+            '@defineWebRoutes' => [],
+            '@defineDatabaseMigrations' => [],
+        ];
     }
 }
