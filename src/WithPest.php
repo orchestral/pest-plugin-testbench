@@ -2,7 +2,6 @@
 
 namespace Orchestra\Testbench\Pest;
 
-use Closure;
 use Pest\TestSuite;
 
 trait WithPest

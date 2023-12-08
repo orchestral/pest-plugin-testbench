@@ -2,7 +2,6 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Schema;
-use Orchestra\Testbench\Attributes\WithMigration;
 
 use function Orchestra\Testbench\Pest\setUp;
 
