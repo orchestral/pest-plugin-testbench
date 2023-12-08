@@ -45,6 +45,8 @@ class Hook
     /**
      * Resolve the "setUp" hook.
      *
+     * @return \Closure(\Closure):(void)
+     *
      * @phpstan-return TCallback
      */
     public static function resolveSetUpCallback(string $file): Closure
@@ -68,6 +70,8 @@ class Hook
 
     /**
      * Resolve the "tearDown" hook.
+     *
+     * @return \Closure(\Closure):(void)
      *
      * @phpstan-return TCallback
      */
