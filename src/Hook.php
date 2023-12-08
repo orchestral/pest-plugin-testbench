@@ -45,8 +45,7 @@ class Hook
     /**
      * Resolve the "setUp" hook.
      *
-     *
-     * @phpstan-return TSetUpTearDownCallback
+     * @phpstan-return TCallback
      */
     public static function resolveSetUpCallback(string $file): Closure
     {
@@ -70,8 +69,7 @@ class Hook
     /**
      * Resolve the "tearDown" hook.
      *
-     *
-     * @phpstan-return TSetUpTearDownCallback
+     * @phpstan-return TCallback
      */
     public static function resolveTearDownCallback(string $file): Closure
     {
