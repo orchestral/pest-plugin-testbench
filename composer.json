@@ -1,34 +1,25 @@
 {
     "name": "pestphp/pest-plugin-template",
     "description": "My awesome plugin",
-    "keywords": [
-        "php",
-        "framework",
-        "pest",
-        "unit",
-        "test",
-        "testing",
-        "plugin"
-    ],
+    "keywords": ["php", "framework", "pest", "unit", "test", "testing", "plugin"],
     "license": "MIT",
-    "require": {
-        "php": "^8.1",
-        "pestphp/pest": "^2.5",
-        "pestphp/pest-plugin": "^2.0.1"
-    },
     "autoload": {
         "psr-4": {
-            "Pest\\PluginName\\": "src/"
+            "Orchestra\\Testbench\\Pest\\": "src/"
         },
         "files": [
             "src/Autoload.php"
         ]
     },
+    "require": {
+        "php": "^8.1",
+        "pestphp/pest": "^2.5",
+        "pestphp/pest-plugin": "^2.0.1"
+    },
     "require-dev": {
+        "orchestra/testbench-core": "^8.16",
         "pestphp/pest-dev-tools": "^2.9"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "config": {
         "sort-packages": true,
         "preferred-install": "dist",
@@ -49,5 +40,7 @@
             "@test:types",
             "@test:unit"
         ]
-    }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
