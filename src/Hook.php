@@ -42,10 +42,8 @@ class Hook
 
     /**
      * Resolve the "setUp" hook.
-     *
-     * @return \Closure|null
      */
-    public static function unpack(string $type, string $fileOrMethod, ?Closure $callback = null): ?Closure
+    public static function unpack(string $type, string $fileOrMethod, Closure $callback = null): ?Closure
     {
         return static::$cachedHooks[$type][$fileOrMethod] ?? $callback;
     }
