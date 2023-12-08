@@ -1,6 +1,6 @@
 {
-    "name": "pestphp/pest-plugin-template",
-    "description": "My awesome plugin",
+    "name": "orchestra/pest-plugin-testbench",
+    "description": "Pest plugin for Testbench",
     "keywords": ["php", "framework", "pest", "unit", "test", "testing", "plugin"],
     "license": "MIT",
     "autoload": {
