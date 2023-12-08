@@ -7,14 +7,20 @@ use Pest\TestSuite;
 
 trait WithPest
 {
-    protected function setUpTheEnvironmentUsingPest()
+    /**
+     * Setup the environment using Pest.
+     */
+    protected function setUpTheEnvironmentUsingPest(): void
     {
         $this->setUpTheEnvironmentUsing(
             Hook::resolveSetUpCallback(TestSuite::getInstance()->getFilename())
         );
     }
 
-    protected function tearDownTheEnvironmentUsingPest()
+    /**
+     * Teardown the environment using Pest.
+     */
+    protected function tearDownTheEnvironmentUsingPest(): void
     {
         $this->tearDownTheEnvironmentUsing(
             Hook::resolveTearDownCallback(TestSuite::getInstance()->getFilename())
