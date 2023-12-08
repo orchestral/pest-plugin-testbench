@@ -5,8 +5,8 @@ namespace Orchestra\Testbench\Pest;
 use Closure;
 
 /**
- * @phpstan-template TSetUpTearDownCallback \Closure():void
- * @phpstan-template TCallback \Closure(TSetUpTearDownCallback):void
+ * @phpstan-type TSetUpTearDownCallback \Closure():void
+ * @phpstan-type TCallback \Closure(TSetUpTearDownCallback):void
  */
 class Hook
 {
@@ -33,10 +33,11 @@ class Hook
      *
      * @param  string  $file
      * @param  (\Closure(\Closure):(void))|null  $callback
+     * @return void
      *
      * @phpstan-param  TCallback|null  $callback
      */
-    public static function setUp(string $file, ?Closure $callback = null)
+    public static function setUp(string $file, ?Closure $callback = null): void
     {
         static::$cachedSetUpHooks[$file] = $callback;
     }
@@ -46,10 +47,11 @@ class Hook
      *
      * @param  string  $file
      * @param  (\Closure(\Closure):(void))|null  $callback
+     * @return void
      *
      * @phpstan-param  TCallback|null  $callback
      */
-    public static function tearDown(string $file, ?Closure $callback = null)
+    public static function tearDown(string $file, ?Closure $callback = null): void
     {
         static::$cachedTearDownHooks[$file] = $callback;
     }
