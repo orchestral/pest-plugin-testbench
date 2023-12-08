@@ -1,47 +1,31 @@
-# CONTRIBUTING
+# Contributing
 
-Contributions are welcome, and are accepted via pull requests.
-Please review these guidelines before submitting any pull requests.
-
-## Process
-
-1. Fork the project
-1. Create a new branch
-1. Code, test, commit and push
-1. Open a pull request detailing your changes. Make sure to follow the [template](.github/PULL_REQUEST_TEMPLATE.md)
+Contributions are welcome, and are accepted via pull requests. Please review these guidelines before submitting any pull requests.
 
 ## Guidelines
 
-* Please ensure the coding style running `composer lint`.
-* Send a coherent commit history, making sure each individual commit in your pull request is meaningful.
-* You may need to [rebase](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) to avoid merge conflicts.
-* Please remember that we follow [SemVer](http://semver.org/).
+* Please follow the [PSR-2 Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md).
+* Ensure that the current tests pass, and if you've added something new, add the tests where relevant.
+* Remember that we follow [SemVer](http://semver.org). If you are changing the behaviour, or the public api, you may need to update the docs.
+* Send a coherent commit history, making sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash](http://git-scm.com/book/en/Git-Tools-Rewriting-History) them before submitting.
+* You may also need to [rebase](http://git-scm.com/book/en/Git-Branching-Rebasing) to avoid merge conflicts.
 
-## Setup
+## Running Tests
 
-Clone your fork, then install the dev dependencies:
+You will need an install of [Composer](https://getcomposer.org) before continuing.
+
+First, install the dependencies:
+
 ```bash
-composer install
-```
-## Lint
-
-Lint your code:
-```bash
-composer lint
-```
-## Tests
-
-Run all tests:
-```bash
-composer test
+$ composer install
 ```
 
-Check types:
+Then run phpunit:
+
 ```bash
-composer test:types
+$ vendor/bin/phpunit
 ```
 
-Unit tests:
-```bash
-composer test:unit
-```
+If the test suite passes on your local machine you should be good to go.
+
+When you make a pull request, the tests will automatically be run again by [GitHub Actions](https://github.com/orchestral/workbench/actions) on multiple php versions.
