@@ -26,4 +26,12 @@ it('does not leak between tests', function () {
     expect(Schema::hasTable('users'))->toBe(false);
     expect(Schema::hasTable('notifications'))->toBe(false);
     expect(Schema::hasTable('jobs'))->toBe(false);
+
+    expect(RefreshDatabaseState::$migrated)->toBe(false);
+    expect(RefreshDatabaseState::$lazilyRefreshed)->toBe(true);
+})->resetRefreshDatabaseState();
+
+it('refresh database state will be resetted', function () {
+    expect(RefreshDatabaseState::$migrated)->toBe(false);
+    expect(RefreshDatabaseState::$lazilyRefreshed)->toBe(false);
 });
