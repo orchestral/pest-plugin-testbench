@@ -106,7 +106,9 @@ function afterApplicationCreated(callable $callback): HigherOrderTapProxy
  */
 function beforeApplicationDestroyed(callable $callback): HigherOrderTapProxy
 {
-    return tap(test(), static fn ($test) => $test->beforeApplicationDestroyed($callback));
+    return tap(test(), static function ($test) use ($callback): void {
+        $test->beforeApplicationDestroyed($callback);
+    });
 }
 
 /**
