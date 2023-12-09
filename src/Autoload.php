@@ -77,7 +77,7 @@ function defineDatabaseSeeders(Closure $callback): void
  */
 function defineRoute(Closure $callback): void
 {
-    Hook::create('@defineRoute', Backtrace::testFile(), $callback);
+    Hook::create('@defineRoutes', Backtrace::testFile(), $callback);
 }
 
 /**
@@ -87,7 +87,7 @@ function defineRoute(Closure $callback): void
  */
 function defineWebRoute(Closure $callback): void
 {
-    Hook::create('@defineWebRoute', Backtrace::testFile(), $callback);
+    Hook::create('@defineWebRoutes', Backtrace::testFile(), $callback);
 }
 
 /**
