@@ -1,16 +1,2 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Call to an undefined method Pest\\\\PendingCalls\\\\TestCall\\|Pest\\\\Support\\\\HigherOrderTapProxy\\:\\:afterApplicationCreated\\(\\)\\.$#"
-			count: 1
-			path: src/Autoload.php
-
-		-
-			message: "#^Call to an undefined method Pest\\\\PendingCalls\\\\TestCall\\|Pest\\\\Support\\\\HigherOrderTapProxy\\:\\:beforeApplicationDestroyed\\(\\)\\.$#"
-			count: 1
-			path: src/Autoload.php
-
-		-
-			message: "#^Call to an undefined method Pest\\\\PendingCalls\\\\TestCall\\|Pest\\\\Support\\\\HigherOrderTapProxy\\:\\:usesTestingFeature\\(\\)\\.$#"
-			count: 1
-			path: src/Autoload.php
+	ignoreErrors: []

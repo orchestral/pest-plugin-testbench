@@ -28,7 +28,7 @@ final class Hook
     /**
      * Define a hook for Pest test file.
      */
-    public static function create(string $type, string $fileOrMethod, Closure $callback = null): void
+    public static function create(string $type, string $fileOrMethod, ?Closure $callback = null): void
     {
         self::$cachedHooks[$type][$fileOrMethod] = $callback;
     }
@@ -36,7 +36,7 @@ final class Hook
     /**
      * Unpack the hook.
      */
-    public static function unpack(string $type, string $fileOrMethod, Closure $callback = null): ?Closure
+    public static function unpack(string $type, string $fileOrMethod, ?Closure $callback = null): ?Closure
     {
         return self::$cachedHooks[$type][$fileOrMethod] ?? $callback;
     }
