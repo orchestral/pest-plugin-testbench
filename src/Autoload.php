@@ -53,7 +53,7 @@ function defineDatabaseMigrations(Closure $callback): void
 /**
  * Define routes for the test case.
  *
- * @param  \Closure(\Illuminate\Http\Router):void  $callback
+ * @param  \Closure(\Illuminate\Routing\Router):void  $callback
  */
 function defineRoute(Closure $callback): void
 {
@@ -63,13 +63,12 @@ function defineRoute(Closure $callback): void
 /**
  * Define web routes for the test case.
  *
- * @param  \Closure(\Illuminate\Http\Router):void  $callback
+ * @param  \Closure(\Illuminate\Routing\Router):void  $callback
  */
 function defineWebRoute(Closure $callback): void
 {
     Hook::create('@defineWebRoute', Backtrace::testFile(), $callback);
 }
-
 
 /**
  * Define "afterApplicationCreated" hook for the test case.

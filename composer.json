@@ -36,17 +36,15 @@
         }
     },
     "scripts": {
-        "refacto": "@php vendor/bin/rector",
-        "lint": "@php vendor/bin/pint",
-        "test:refacto": "@refacto --dry-run",
-        "test:lint": "@lint --test",
-        "test:types": "@php vendor/bin/phpstan analyse --ansi",
-        "test:unit": "@php vendor/bin/pest --colors=always",
-        "test": [
-            "@test:refacto",
-            "@test:lint",
-            "@test:types",
-            "@test:unit"
+        "lint": [
+            "@php vendor/bin/rector",
+            "@php vendor/bin/phpstan analyse --ansi",
+            "@php vendor/bin/pint"
+        ],
+        "test": "@php vendor/bin/pest --colors=always",
+        "ci": [
+            "@lint",
+            "@test"
         ]
     },
     "prefer-stable": true,
