@@ -2,8 +2,8 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\Attributes\ResetRefreshDatabaseState;
 use Orchestra\Testbench\Attributes\WithMigration;
-
 use function Orchestra\Testbench\Pest\afterApplicationCreated;
 use function Orchestra\Testbench\Pest\beforeApplicationDestroyed;
 use function Orchestra\Testbench\Pest\setUp;
@@ -18,6 +18,7 @@ setUp(function ($setUp) {
         config(['testbench.tearDown' => true]);
     });
 
+    usesTestingFeature(new ResetRefreshDatabaseState());
     usesTestingFeature(new WithMigration('laravel', 'queue'));
 
     $setUp();
