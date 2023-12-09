@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Routing\Router;
+
 use function Orchestra\Testbench\Pest\defineRoutes;
 
-defineRoutes(function ($router) {
+defineRoutes(function (Router $router) {
     $router->get('hello', fn () => 'hello world');
 });
 

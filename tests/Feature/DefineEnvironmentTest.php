@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
 
 use function Orchestra\Testbench\Pest\defineEnvironment;
 
-defineEnvironment(function ($app) {
+defineEnvironment(function (Application $app) {
     $app->instance('testbench.defined', true);
 });
 
