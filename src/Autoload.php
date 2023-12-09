@@ -51,6 +51,26 @@ function defineDatabaseMigrations(Closure $callback): void
 }
 
 /**
+ * Destroy database migrations for the test case.
+ *
+ * @param  \Closure():void  $callback
+ */
+function destroyDatabaseMigrations(Closure $callback): void
+{
+    Hook::create('@destroyDatabaseMigrations', Backtrace::testFile(), $callback);
+}
+
+/**
+ * Define database seeders for the test case.
+ *
+ * @param  \Closure():void  $callback
+ */
+function defineDatabaseSeeders(Closure $callback): void
+{
+    Hook::create('@defineDatabaseSeeders', Backtrace::testFile(), $callback);
+}
+
+/**
  * Define routes for the test case.
  *
  * @param  \Closure(\Illuminate\Routing\Router):void  $callback

@@ -21,6 +21,8 @@ final class Hook
         '@defineRoutes' => [],
         '@defineWebRoutes' => [],
         '@defineDatabaseMigrations' => [],
+        '@destroyDatabaseMigrations' => [],
+        '@defineDatabaseSeeders' => [],
     ];
 
     /**

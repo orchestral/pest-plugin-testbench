@@ -31,6 +31,11 @@ trait WithPest
         );
     }
 
+    /**
+     * Define environment setup using Pest.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     */
     protected function defineEnvironmentUsingPest($app): void
     {
         $callback = Hook::unpack('@defineEnvironment', TestSuite::getInstance()->getFilename(), function (): void {
@@ -40,9 +45,36 @@ trait WithPest
         call_user_func(Closure::bind($callback, $this), $app);
     }
 
+    /**
+     * Define database migrations using Pest.
+     */
     protected function defineDatabaseMigrationsUsingPest(): void
     {
-        $callback = Hook::unpack('@defineDatabase', TestSuite::getInstance()->getFilename(), function (): void {
+        $callback = Hook::unpack('@defineDatabaseMigrations', TestSuite::getInstance()->getFilename(), function (): void {
+            //
+        });
+
+        call_user_func(Closure::bind($callback, $this));
+    }
+
+    /**
+     * Destroy database migrations using Pest.
+     */
+    protected function destroyDatabaseMigrationsUsingPest(): void
+    {
+        $callback = Hook::unpack('@destroyDatabaseMigrations', TestSuite::getInstance()->getFilename(), function (): void {
+            //
+        });
+
+        call_user_func(Closure::bind($callback, $this));
+    }
+
+    /**
+     * Define database seeders using Pest.
+     */
+    protected function defineDatabaseSeedersUsingPest(): void
+    {
+        $callback = Hook::unpack('@defineDatabaseSeeders', TestSuite::getInstance()->getFilename(), function (): void {
             //
         });
 
