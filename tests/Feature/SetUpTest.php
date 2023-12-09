@@ -17,7 +17,6 @@ setUp(function ($parent) {
 
     beforeApplicationDestroyed(function () {
         config(['testbench.tearDown' => true]);
-        $this->resetRefreshDatabaseState();
     });
 
     usesTestingFeature(new WithMigration('laravel', 'queue'));

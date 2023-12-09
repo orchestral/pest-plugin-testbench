@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Orchestra\Testbench\Pest;
 
 use Closure;
+use PHPUnit\Framework\TestCase;
 use Pest\Plugin;
 use Pest\Support\Backtrace;
+use Pest\Support\HigherOrderTapProxy;
 
 Plugin::uses(WithPest::class);
 
@@ -93,17 +95,21 @@ function defineWebRoutes(Closure $callback): void
 /**
  * Define "afterApplicationCreated" hook for the test case.
  */
-function afterApplicationCreated(callable $callback): void
+function afterApplicationCreated(callable $callback): HigherOrderTapProxy
 {
-    test()->afterApplicationCreated($callback);
+    return tap(test(), static function ($test) use ($callback) {
+        $test->afterApplicationCreated($callback);
+    });
 }
 
 /**
  * Define "beforeApplicationDestroyed" hook for the test case.
  */
-function beforeApplicationDestroyed(callable $callback): void
+function beforeApplicationDestroyed(callable $callback): HigherOrderTapProxy
 {
-    test()->beforeApplicationDestroyed($callback);
+    return tap(test(), static function ($test) use ($callback) {
+        return $test->beforeApplicationDestroyed($callback);
+    });
 }
 
 /**
@@ -111,7 +117,9 @@ function beforeApplicationDestroyed(callable $callback): void
  *
  * @param  object  $attribute
  */
-function usesTestingFeature($attribute): void
+function usesTestingFeature($attribute): HigherOrderTapProxy
 {
-    test()->usesTestingFeature($attribute);
+    return tap(test(), static function ($test) use ($attribute) {
+        $test->usesTestingFeature($attribute);
+    });
 }
