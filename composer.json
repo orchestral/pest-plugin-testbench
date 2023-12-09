@@ -21,12 +21,9 @@
         "orchestra/testbench": "^8.18",
         "pestphp/pest": "^2.12",
         "pestphp/pest-plugin": "^2.0.1",
-        "pestphp/pest-plugin-laravel": "^2.2",
-        "symfony/yaml": "^6.2"
+        "pestphp/pest-plugin-laravel": "^2.2"
     },
     "require-dev": {
-        "laravel/framework": "^10.0",
-        "mockery/mockery": "^1.5.1",
         "pestphp/pest-dev-tools": "^2.9"
     },
     "config": {
