@@ -100,9 +100,16 @@ trait WithPest
         call_user_func(Closure::bind($callback, $this), $router);
     }
 
+    /**
+     * Reset refresh database state.
+     *
+     * @return $this
+     */
     public function resetRefreshDatabaseState()
     {
         RefreshDatabaseState::$migrated = false;
         RefreshDatabaseState::$lazilyRefreshed = false;
+
+        return $this;
     }
 }

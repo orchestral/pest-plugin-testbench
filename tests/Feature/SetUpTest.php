@@ -3,14 +3,14 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
-use Orchestra\Testbench\Attributes\ResetRefreshDatabaseState;
 use Orchestra\Testbench\Attributes\WithMigration;
+
 use function Orchestra\Testbench\Pest\afterApplicationCreated;
 use function Orchestra\Testbench\Pest\beforeApplicationDestroyed;
 use function Orchestra\Testbench\Pest\setUp;
 use function Orchestra\Testbench\Pest\usesTestingFeature;
 
-setUp(function ($setUp) {
+setUp(function ($parent) {
     afterApplicationCreated(function () {
         config(['testbench.setUp' => true]);
     });
@@ -22,7 +22,7 @@ setUp(function ($setUp) {
 
     usesTestingFeature(new WithMigration('laravel', 'queue'));
 
-    $setUp();
+    $parent();
 });
 
 it('can execute default setUpTheEnvironment via `setUp` helper', function () {

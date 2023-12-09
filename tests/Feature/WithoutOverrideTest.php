@@ -3,10 +3,11 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
+
 use function Orchestra\Testbench\Pest\setUp;
 
-setUp(function ($setUp) {
-    $setUp();
+setUp(function ($parent) {
+    $parent();
 });
 
 it('can execute default setUpTheEnvironment via `setUp` helper', function () {
@@ -19,10 +20,10 @@ it('does not leak between tests', function () {
     expect(config('testbench.setUp'))->toBe(null);
     expect(config('testbench.tearDown'))->toBe(null);
 
+    expect(RefreshDatabaseState::$migrated)->toBe(false);
+    expect(RefreshDatabaseState::$lazilyRefreshed)->toBe(false);
+
     expect(Schema::hasTable('users'))->toBe(false);
     expect(Schema::hasTable('notifications'))->toBe(false);
     expect(Schema::hasTable('jobs'))->toBe(false);
-
-    expect(RefreshDatabaseState::$migrated)->toBe(false);
-    expect(RefreshDatabaseState::$lazilyRefreshed)->toBe(true);
 });
