@@ -18,7 +18,7 @@ Plugin::uses(WithPest::class);
  */
 function setUp(Closure $callback): void
 {
-    Hook::create('@setUp', Backtrace::testFile(), $callback);
+    Hook::attach('@setUp', Backtrace::testFile(), $callback);
 }
 
 /**
@@ -28,7 +28,7 @@ function setUp(Closure $callback): void
  */
 function tearDown(Closure $callback): void
 {
-    Hook::create('@tearDown', Backtrace::testFile(), $callback);
+    Hook::attach('@tearDown', Backtrace::testFile(), $callback);
 }
 
 /**
@@ -38,7 +38,7 @@ function tearDown(Closure $callback): void
  */
 function defineEnvironment(Closure $callback): void
 {
-    Hook::create('@defineEnvironment', Backtrace::testFile(), $callback);
+    Hook::attach('@defineEnvironment', Backtrace::testFile(), $callback);
 }
 
 /**
@@ -48,7 +48,7 @@ function defineEnvironment(Closure $callback): void
  */
 function defineDatabaseMigrations(Closure $callback): void
 {
-    Hook::create('@defineDatabaseMigrations', Backtrace::testFile(), $callback);
+    Hook::attach('@defineDatabaseMigrations', Backtrace::testFile(), $callback);
 }
 
 /**
@@ -58,7 +58,7 @@ function defineDatabaseMigrations(Closure $callback): void
  */
 function destroyDatabaseMigrations(Closure $callback): void
 {
-    Hook::create('@destroyDatabaseMigrations', Backtrace::testFile(), $callback);
+    Hook::attach('@destroyDatabaseMigrations', Backtrace::testFile(), $callback);
 }
 
 /**
@@ -68,7 +68,7 @@ function destroyDatabaseMigrations(Closure $callback): void
  */
 function defineDatabaseSeeders(Closure $callback): void
 {
-    Hook::create('@defineDatabaseSeeders', Backtrace::testFile(), $callback);
+    Hook::attach('@defineDatabaseSeeders', Backtrace::testFile(), $callback);
 }
 
 /**
@@ -78,7 +78,7 @@ function defineDatabaseSeeders(Closure $callback): void
  */
 function defineRoutes(Closure $callback): void
 {
-    Hook::create('@defineRoutes', Backtrace::testFile(), $callback);
+    Hook::attach('@defineRoutes', Backtrace::testFile(), $callback);
 }
 
 /**
@@ -88,7 +88,7 @@ function defineRoutes(Closure $callback): void
  */
 function defineWebRoutes(Closure $callback): void
 {
-    Hook::create('@defineWebRoutes', Backtrace::testFile(), $callback);
+    Hook::attach('@defineWebRoutes', Backtrace::testFile(), $callback);
 }
 
 /**
