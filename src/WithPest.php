@@ -13,11 +13,11 @@ trait WithPest
      */
     protected function setUpTheEnvironmentUsingPest(): void
     {
-        $this->setUpTheEnvironmentUsing(
-            Closure::bind(Hook::unpack('@setUp', TestSuite::getInstance()->getFilename(), function ($callback): void {
-                call_user_func($callback);
-            }), $this)
-        );
+        if (is_null($callback = Hook::unpack('@setUp', TestSuite::getInstance()->getFilename()))) {
+            return;
+        }
+
+        $this->setUpTheEnvironmentUsing(Closure::bind($callback, $this));
     }
 
     /**
@@ -25,11 +25,11 @@ trait WithPest
      */
     protected function tearDownTheEnvironmentUsingPest(): void
     {
-        $this->tearDownTheEnvironmentUsing(
-            Closure::bind(Hook::unpack('@tearDown', TestSuite::getInstance()->getFilename(), function ($callback): void {
-                call_user_func($callback);
-            }), $this)
-        );
+        if (is_null($callback = Hook::unpack('@tearDown', TestSuite::getInstance()->getFilename()))) {
+            return;
+        }
+
+        $this->tearDownTheEnvironmentUsing(Closure::bind($callback, $this));
     }
 
     /**
@@ -39,9 +39,9 @@ trait WithPest
      */
     protected function defineEnvironmentUsingPest($app): void
     {
-        $callback = Hook::unpack('@defineEnvironment', TestSuite::getInstance()->getFilename(), function (): void {
-            //
-        });
+        if (is_null($callback = Hook::unpack('@defineEnvironment', TestSuite::getInstance()->getFilename()))) {
+            return;
+        }
 
         call_user_func(Closure::bind($callback, $this), $app);
     }
@@ -51,9 +51,9 @@ trait WithPest
      */
     protected function defineDatabaseMigrationsUsingPest(): void
     {
-        $callback = Hook::unpack('@defineDatabaseMigrations', TestSuite::getInstance()->getFilename(), function (): void {
-            //
-        });
+        if (is_null($callback = Hook::unpack('@defineDatabaseMigrations', TestSuite::getInstance()->getFilename()))) {
+            return;
+        }
 
         call_user_func(Closure::bind($callback, $this));
     }
@@ -63,9 +63,9 @@ trait WithPest
      */
     protected function destroyDatabaseMigrationsUsingPest(): void
     {
-        $callback = Hook::unpack('@destroyDatabaseMigrations', TestSuite::getInstance()->getFilename(), function (): void {
-            //
-        });
+        if (is_null($callback = Hook::unpack('@destroyDatabaseMigrations', TestSuite::getInstance()->getFilename()))) {
+            return;
+        }
 
         call_user_func(Closure::bind($callback, $this));
     }
@@ -75,27 +75,27 @@ trait WithPest
      */
     protected function defineDatabaseSeedersUsingPest(): void
     {
-        $callback = Hook::unpack('@defineDatabaseSeeders', TestSuite::getInstance()->getFilename(), function (): void {
-            //
-        });
+        if (is_null($callback = Hook::unpack('@defineDatabaseSeeders', TestSuite::getInstance()->getFilename()))) {
+            return;
+        }
 
         call_user_func(Closure::bind($callback, $this));
     }
 
     protected function defineRoutesUsingPest($router): void
     {
-        $callback = Hook::unpack('@defineRoutes', TestSuite::getInstance()->getFilename(), function (): void {
-            //
-        });
+        if (is_null($callback = Hook::unpack('@defineRoutes', TestSuite::getInstance()->getFilename()))) {
+            return;
+        }
 
         call_user_func(Closure::bind($callback, $this), $router);
     }
 
     protected function defineWebRoutesUsingPest($router): void
     {
-        $callback = Hook::unpack('@defineWebRoutes', TestSuite::getInstance()->getFilename(), function (): void {
-            //
-        });
+        if (is_null($callback = Hook::unpack('@defineWebRoutes', TestSuite::getInstance()->getFilename()))) {
+            return;
+        }
 
         call_user_func(Closure::bind($callback, $this), $router);
     }
