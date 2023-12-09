@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Pest;
 
+use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Pest\Support\Closure;
 use Pest\TestSuite;
 
@@ -97,5 +98,11 @@ trait WithPest
         });
 
         call_user_func(Closure::bind($callback, $this), $router);
+    }
+
+    public function resetRefreshDatabaseState()
+    {
+        RefreshDatabaseState::$migrated = false;
+        RefreshDatabaseState::$lazilyRefreshed = false;
     }
 }

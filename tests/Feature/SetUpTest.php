@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Attributes\ResetRefreshDatabaseState;
 use Orchestra\Testbench\Attributes\WithMigration;
@@ -16,9 +17,9 @@ setUp(function ($setUp) {
 
     beforeApplicationDestroyed(function () {
         config(['testbench.tearDown' => true]);
+        $this->resetRefreshDatabaseState();
     });
 
-    usesTestingFeature(new ResetRefreshDatabaseState());
     usesTestingFeature(new WithMigration('laravel', 'queue'));
 
     $setUp();
@@ -38,6 +39,9 @@ it('can resolve `usesTestingFeature` via `setUp` helper', function () {
     expect(Schema::hasTable('users'))->toBe(true);
     expect(Schema::hasTable('notifications'))->toBe(false);
     expect(Schema::hasTable('jobs'))->toBe(true);
+
+    expect(RefreshDatabaseState::$migrated)->toBe(false);
+    expect(RefreshDatabaseState::$lazilyRefreshed)->toBe(true);
 });
 
 it('does not leak between tests', function () {
