@@ -6,11 +6,8 @@ namespace Orchestra\Testbench\Pest;
 
 use Closure;
 use Illuminate\Support\Arr;
-use Pest\PendingCalls\TestCall;
 use Pest\Plugin;
 use Pest\Support\Backtrace;
-use Pest\Support\HigherOrderTapProxy;
-use Pest\TestSuite;
 
 Plugin::uses(WithPest::class);
 
@@ -97,7 +94,7 @@ function defineWebRoutes(Closure $callback): void
 /**
  * Define "afterApplicationCreated" hook for the test case.
  */
-function afterApplicationCreated(callable $callback): void
+function afterApplicationCreated(Closure $callback): void
 {
     Hook::attach('@afterApplicationCreated', Backtrace::testFile(), $callback);
 }
@@ -105,7 +102,7 @@ function afterApplicationCreated(callable $callback): void
 /**
  * Define "beforeApplicationDestroyed" hook for the test case.
  */
-function beforeApplicationDestroyed(callable $callback): void
+function beforeApplicationDestroyed(Closure $callback): void
 {
     Hook::attach('@beforeApplicationDestroyed', Backtrace::testFile(), $callback);
 }
@@ -115,11 +112,11 @@ function beforeApplicationDestroyed(callable $callback): void
  *
  * @param  object  $attributes
  */
-function usesTestingFeature(...$attributes)
+function usesTestingFeature(...$attributes): void
 {
-    Hook::attach('@usesTestingFeature', Backtrace::testFile(), function () use ($attributes) {
+    Hook::attach('@usesTestingFeature', Backtrace::testFile(), function () use ($attributes): void {
         foreach (Arr::wrap($attributes) as $attribute) {
-            $this->usesTestingFeature($attribute);
+            $this->usesTestingFeature($attribute); // @phpstan-ignore-line
         }
     });
 }

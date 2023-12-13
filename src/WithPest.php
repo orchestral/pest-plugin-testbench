@@ -15,15 +15,18 @@ trait WithPest
     {
         $fileName = TestSuite::getInstance()->getFilename();
 
-        $setUp = Hook::unpack('@setUp', $fileName) ?? function ($parent) {
+        $setUp = Hook::unpack('@setUp', $fileName) ?? function ($parent): void {
             value($parent);
         };
 
-        $afterApplicationCreated = Hook::unpack('@afterApplicationCreated', $fileName) ?? function () {};
-        $beforeApplicationDestroyed = Hook::unpack('@beforeApplicationDestroyed', $fileName) ?? function () {};
-        $usesTestingFeature = Hook::unpack('@usesTestingFeature', $fileName) ?? function () {};
+        $afterApplicationCreated = Hook::unpack('@afterApplicationCreated', $fileName) ?? function (): void {
+        };
+        $beforeApplicationDestroyed = Hook::unpack('@beforeApplicationDestroyed', $fileName) ?? function (): void {
+        };
+        $usesTestingFeature = Hook::unpack('@usesTestingFeature', $fileName) ?? function (): void {
+        };
 
-        $this->setUpTheEnvironmentUsing(function ($parent) use ($setUp, $afterApplicationCreated, $beforeApplicationDestroyed, $usesTestingFeature) {
+        $this->setUpTheEnvironmentUsing(function ($parent) use ($setUp, $afterApplicationCreated, $beforeApplicationDestroyed, $usesTestingFeature): void {
             value(Closure::bind($afterApplicationCreated, $this));
             value(Closure::bind($beforeApplicationDestroyed, $this));
             value(Closure::bind($usesTestingFeature, $this));

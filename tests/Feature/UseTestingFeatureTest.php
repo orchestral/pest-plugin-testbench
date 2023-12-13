@@ -5,6 +5,7 @@ use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Attributes\WithConfig;
 use Orchestra\Testbench\Attributes\WithMigration;
+
 use function Orchestra\Testbench\Pest\usesTestingFeature;
 
 usesTestingFeature(

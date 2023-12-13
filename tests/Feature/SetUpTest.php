@@ -5,10 +5,7 @@ use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Attributes\WithMigration;
 
-use function Orchestra\Testbench\Pest\afterApplicationCreated;
-use function Orchestra\Testbench\Pest\beforeApplicationDestroyed;
 use function Orchestra\Testbench\Pest\setUp;
-use function Orchestra\Testbench\Pest\usesTestingFeature;
 
 setUp(function ($parent) {
     $this->afterApplicationCreated(function () {
