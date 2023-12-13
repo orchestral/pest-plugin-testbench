@@ -11,15 +11,15 @@ use function Orchestra\Testbench\Pest\setUp;
 use function Orchestra\Testbench\Pest\usesTestingFeature;
 
 setUp(function ($parent) {
-    afterApplicationCreated(function () {
+    $this->afterApplicationCreated(function () {
         config(['testbench.setUp' => true]);
     });
 
-    beforeApplicationDestroyed(function () {
+    $this->beforeApplicationDestroyed(function () {
         config(['testbench.tearDown' => true]);
     });
 
-    usesTestingFeature(new WithMigration('laravel', 'queue'));
+    $this->usesTestingFeature(new WithMigration('laravel', 'queue'));
 
     $parent();
 });

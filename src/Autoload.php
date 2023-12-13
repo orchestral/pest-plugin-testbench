@@ -6,9 +6,11 @@ namespace Orchestra\Testbench\Pest;
 
 use Closure;
 use Illuminate\Support\Arr;
+use Pest\PendingCalls\TestCall;
 use Pest\Plugin;
 use Pest\Support\Backtrace;
 use Pest\Support\HigherOrderTapProxy;
+use Pest\TestSuite;
 
 Plugin::uses(WithPest::class);
 
@@ -95,21 +97,17 @@ function defineWebRoutes(Closure $callback): void
 /**
  * Define "afterApplicationCreated" hook for the test case.
  */
-function afterApplicationCreated(callable $callback): HigherOrderTapProxy
+function afterApplicationCreated(callable $callback): void
 {
-    return tap(test(), static function ($test) use ($callback): void {
-        $test->afterApplicationCreated($callback);
-    });
+    Hook::attach('@afterApplicationCreated', Backtrace::testFile(), $callback);
 }
 
 /**
  * Define "beforeApplicationDestroyed" hook for the test case.
  */
-function beforeApplicationDestroyed(callable $callback): HigherOrderTapProxy
+function beforeApplicationDestroyed(callable $callback): void
 {
-    return tap(test(), static function ($test) use ($callback): void {
-        $test->beforeApplicationDestroyed($callback);
-    });
+    Hook::attach('@beforeApplicationDestroyed', Backtrace::testFile(), $callback);
 }
 
 /**
@@ -117,11 +115,11 @@ function beforeApplicationDestroyed(callable $callback): HigherOrderTapProxy
  *
  * @param  object  $attributes
  */
-function usesTestingFeature(...$attributes): HigherOrderTapProxy
+function usesTestingFeature(...$attributes)
 {
-    return tap(test(), static function ($test) use ($attributes): void {
+    Hook::attach('@usesTestingFeature', Backtrace::testFile(), function () use ($attributes) {
         foreach (Arr::wrap($attributes) as $attribute) {
-            $test->usesTestingFeature($attribute);
+            $this->usesTestingFeature($attribute);
         }
     });
 }

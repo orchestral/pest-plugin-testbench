@@ -13,11 +13,22 @@ trait WithPest
      */
     protected function setUpTheEnvironmentUsingPest(): void
     {
-        if (\is_null($callback = Hook::unpack('@setUp', TestSuite::getInstance()->getFilename()))) {
-            return;
-        }
+        $fileName = TestSuite::getInstance()->getFilename();
 
-        $this->setUpTheEnvironmentUsing(Closure::bind($callback, $this));
+        $setUp = Hook::unpack('@setUp', $fileName) ?? function ($parent) {
+            value($parent);
+        };
+
+        $afterApplicationCreated = Hook::unpack('@afterApplicationCreated', $fileName) ?? function () {};
+        $beforeApplicationDestroyed = Hook::unpack('@beforeApplicationDestroyed', $fileName) ?? function () {};
+        $usesTestingFeature = Hook::unpack('@usesTestingFeature', $fileName) ?? function () {};
+
+        $this->setUpTheEnvironmentUsing(function ($parent) use ($setUp, $afterApplicationCreated, $beforeApplicationDestroyed, $usesTestingFeature) {
+            $afterApplicationCreated->call($this);
+            $beforeApplicationDestroyed->call($this);
+            $usesTestingFeature->call($this);
+            $setUp->call($this, $parent);
+        });
     }
 
     /**

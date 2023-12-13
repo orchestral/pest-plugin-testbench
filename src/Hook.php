@@ -23,6 +23,10 @@ final class Hook
         '@defineDatabaseMigrations' => [],
         '@destroyDatabaseMigrations' => [],
         '@defineDatabaseSeeders' => [],
+
+        '@afterApplicationCreated' => [],
+        '@beforeApplicationDestroyed' => [],
+        '@usesTestingFeature' => [],
     ];
 
     /**
