@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchestra\Testbench\Pest;
 
 use Closure;
+use Illuminate\Support\Arr;
 use Pest\Plugin;
 use Pest\Support\Backtrace;
 use Pest\Support\HigherOrderTapProxy;
@@ -114,11 +115,13 @@ function beforeApplicationDestroyed(callable $callback): HigherOrderTapProxy
 /**
  * Use testing feature for the test case.
  *
- * @param  object  $attribute
+ * @param  object  $attributes
  */
-function usesTestingFeature($attribute): HigherOrderTapProxy
+function usesTestingFeature(...$attributes): HigherOrderTapProxy
 {
-    return tap(test(), static function ($test) use ($attribute): void {
-        $test->usesTestingFeature($attribute);
+    return tap(test(), static function ($test) use ($attributes): void {
+        foreach (Arr::wrap($attributes) as $attribute) {
+            $test->usesTestingFeature($attribute);
+        }
     });
 }
