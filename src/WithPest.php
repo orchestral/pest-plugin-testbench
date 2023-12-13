@@ -24,10 +24,10 @@ trait WithPest
         $usesTestingFeature = Hook::unpack('@usesTestingFeature', $fileName) ?? function () {};
 
         $this->setUpTheEnvironmentUsing(function ($parent) use ($setUp, $afterApplicationCreated, $beforeApplicationDestroyed, $usesTestingFeature) {
-            $afterApplicationCreated->call($this);
-            $beforeApplicationDestroyed->call($this);
-            $usesTestingFeature->call($this);
-            $setUp->call($this, $parent);
+            value(Closure::bind($afterApplicationCreated, $this));
+            value(Closure::bind($beforeApplicationDestroyed, $this));
+            value(Closure::bind($usesTestingFeature, $this));
+            value(Closure::bind($setUp, $this), $parent);
         });
     }
 
