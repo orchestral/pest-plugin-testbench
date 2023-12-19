@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Orchestra\Testbench\Pest;
 
 use Closure;
+use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Arr;
 use Pest\Plugin;
 use Pest\Support\Backtrace;
@@ -119,4 +120,13 @@ function usesTestingFeature(...$attributes): void
             $this->usesTestingFeature($attribute); // @phpstan-ignore-line
         }
     });
+}
+
+/**
+ * Reset refresh database state.
+ */
+function resetRefreshDatabaseState(): void
+{
+    RefreshDatabaseState::$migrated = false;
+    RefreshDatabaseState::$lazilyRefreshed = false;
 }
