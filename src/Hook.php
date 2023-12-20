@@ -12,9 +12,9 @@ final class Hook
     /**
      * The cached hooks.
      *
-     * @var array<string, array<string, \Closure|null>>
+     * @var array<string, array<string, \Closure|array|null>>
      */
-    private static array $cachedHooks = [
+    public static array $cachedHooks = [
         '@setUp' => [],
         '@tearDown' => [],
         '@defineEnvironment' => [],
@@ -32,7 +32,7 @@ final class Hook
     /**
      * Define a hook for Pest test file.
      */
-    public static function attach(string $type, string $fileOrMethod, ?Closure $callback = null): void
+    public static function attach(string $type, string $fileOrMethod, Closure|array|null $callback = null): void
     {
         self::$cachedHooks[$type][$fileOrMethod] = $callback;
     }
@@ -40,8 +40,29 @@ final class Hook
     /**
      * Unpack the hook.
      */
-    public static function unpack(string $type, string $fileOrMethod, ?Closure $callback = null): ?Closure
+    public static function unpack(string $type, string $fileOrMethod, Closure|array|null $callback = null): Closure|array|null
     {
         return self::$cachedHooks[$type][$fileOrMethod] ?? $callback;
+    }
+
+    /**
+     * Flush hook state.
+     */
+    public static function flushState(): void
+    {
+        self::$cachedHooks = [
+            '@setUp' => [],
+            '@tearDown' => [],
+            '@defineEnvironment' => [],
+            '@defineRoutes' => [],
+            '@defineWebRoutes' => [],
+            '@defineDatabaseMigrations' => [],
+            '@destroyDatabaseMigrations' => [],
+            '@defineDatabaseSeeders' => [],
+
+            '@afterApplicationCreated' => [],
+            '@beforeApplicationDestroyed' => [],
+            '@usesTestingFeature' => [],
+        ];
     }
 }

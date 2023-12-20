@@ -8,27 +8,50 @@ use Pest\TestSuite;
 trait WithPest
 {
     /**
+     * Prepare the testing environment before the running the test case.
+     *
+     *
+     * @codeCoverageIgnore
+     */
+    protected static function setUpBeforeClassUsingPest(): void
+    {
+        $attributes = Hook::unpack('@usesTestingFeature', self::$__filename) ?? [];
+
+        foreach ($attributes as $attribute) {
+            static::usesTestingFeature($attribute);
+        }
+    }
+
+    /**
+     * Clean up the testing environment before the next test case.
+     *
+     *
+     * @codeCoverageIgnore
+     */
+    protected static function tearDownAfterClassUsingPest(): void
+    {
+        //Hook::flushState();
+    }
+
+    /**
      * Setup the environment using Pest.
      */
     protected function setUpTheEnvironmentUsingPest(): void
     {
-        $fileName = TestSuite::getInstance()->getFilename();
-
-        $setUp = Hook::unpack('@setUp', $fileName) ?? function ($parent): void {
+        $setUp = Hook::unpack('@setUp', self::$__filename) ?? function ($parent): void {
             value($parent);
         };
 
-        $afterApplicationCreated = Hook::unpack('@afterApplicationCreated', $fileName) ?? function (): void {
+        $afterApplicationCreated = Hook::unpack('@afterApplicationCreated', self::$__filename) ?? function (): void {
+            //
         };
-        $beforeApplicationDestroyed = Hook::unpack('@beforeApplicationDestroyed', $fileName) ?? function (): void {
-        };
-        $usesTestingFeature = Hook::unpack('@usesTestingFeature', $fileName) ?? function (): void {
+        $beforeApplicationDestroyed = Hook::unpack('@beforeApplicationDestroyed', self::$__filename) ?? function (): void {
+            //
         };
 
-        $this->setUpTheEnvironmentUsing(function ($parent) use ($setUp, $afterApplicationCreated, $beforeApplicationDestroyed, $usesTestingFeature): void {
+        $this->setUpTheEnvironmentUsing(function ($parent) use ($setUp, $afterApplicationCreated, $beforeApplicationDestroyed): void {
             value(Closure::bind($afterApplicationCreated, $this));
             value(Closure::bind($beforeApplicationDestroyed, $this));
-            value(Closure::bind($usesTestingFeature, $this));
             value(Closure::bind($setUp, $this), $parent);
         });
     }

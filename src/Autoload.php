@@ -111,15 +111,11 @@ function beforeApplicationDestroyed(Closure $callback): void
 /**
  * Use testing feature for the test case.
  *
- * @param  object  $attributes
+ * @param  object  ...$attributes
  */
 function usesTestingFeature(...$attributes): void
 {
-    Hook::attach('@usesTestingFeature', Backtrace::testFile(), function () use ($attributes): void {
-        foreach (Arr::wrap($attributes) as $attribute) {
-            $this->usesTestingFeature($attribute); // @phpstan-ignore-line
-        }
-    });
+    Hook::attach('@usesTestingFeature', Backtrace::testFile(), Arr::wrap($attributes));
 }
 
 /**
