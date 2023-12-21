@@ -44,25 +44,4 @@ final class Hook
     {
         return self::$cachedHooks[$type][$fileOrMethod] ?? $callback;
     }
-
-    /**
-     * Flush hook state.
-     */
-    public static function flushState(): void
-    {
-        self::$cachedHooks = [
-            '@setUp' => [],
-            '@tearDown' => [],
-            '@defineEnvironment' => [],
-            '@defineRoutes' => [],
-            '@defineWebRoutes' => [],
-            '@defineDatabaseMigrations' => [],
-            '@destroyDatabaseMigrations' => [],
-            '@defineDatabaseSeeders' => [],
-
-            '@afterApplicationCreated' => [],
-            '@beforeApplicationDestroyed' => [],
-            '@usesTestingFeature' => [],
-        ];
-    }
 }

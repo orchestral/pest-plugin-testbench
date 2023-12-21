@@ -30,7 +30,7 @@ trait WithPest
      */
     protected static function tearDownAfterClassUsingPest(): void
     {
-        //Hook::flushState();
+        //
     }
 
     /**
