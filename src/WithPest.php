@@ -2,6 +2,7 @@
 
 namespace Orchestra\Testbench\Pest;
 
+use Orchestra\Testbench\Attributes\ResetRefreshDatabaseState;
 use Pest\Support\Closure;
 use Pest\TestSuite;
 
@@ -143,7 +144,7 @@ trait WithPest
      */
     public function resetRefreshDatabaseState()
     {
-        resetRefreshDatabaseState();
+        ResetRefreshDatabaseState::run();
 
         return $this;
     }

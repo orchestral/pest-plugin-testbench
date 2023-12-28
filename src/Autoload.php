@@ -7,6 +7,7 @@ namespace Orchestra\Testbench\Pest;
 use Closure;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Arr;
+use Orchestra\Testbench\Attributes\ResetRefreshDatabaseState;
 use Pest\Plugin;
 use Pest\Support\Backtrace;
 
@@ -123,6 +124,5 @@ function usesTestingFeature(...$attributes): void
  */
 function resetRefreshDatabaseState(): void
 {
-    RefreshDatabaseState::$migrated = false;
-    RefreshDatabaseState::$lazilyRefreshed = false;
+    usesTestingFeature(new ResetRefreshDatabaseState());
 }
