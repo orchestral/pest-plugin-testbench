@@ -21,7 +21,8 @@
         "orchestra/testbench": "^8.19",
         "pestphp/pest": "^2.12",
         "pestphp/pest-plugin-laravel": "^2.2",
-        "symfony/polyfill-php82": "^1.28"
+        "symfony/polyfill-php82": "^1.28",
+        "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
         "orchestra/testbench-dusk": "^8.19.1",
