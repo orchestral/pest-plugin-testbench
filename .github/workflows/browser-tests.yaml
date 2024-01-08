@@ -58,7 +58,7 @@ jobs:
         run: ./vendor/laravel/dusk/bin/chromedriver-linux &
 
       - name: Run Laravel Server
-        run: php vendor/bin/testbench serve --no-reload &
+        run: php vendor/bin/testbench-dusk serve --no-reload &
 
       - name: Execute tests
         run: vendor/bin/pest -c phpunit.dusk.xml
