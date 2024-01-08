@@ -7,5 +7,6 @@ use Orchestra\Testbench\Concerns\WithWorkbench;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
-    use LazilyRefreshDatabase, WithWorkbench;
+    use LazilyRefreshDatabase;
+    use WithWorkbench;
 }

@@ -9,7 +9,8 @@ use PHPUnit\Framework\Attributes\BeforeClass;
 
 class DuskTestCase extends \Orchestra\Testbench\Dusk\TestCase
 {
-    use DatabaseMigrations, WithWorkbench;
+    use DatabaseMigrations;
+    use WithWorkbench;
 
     /**
      * Prepare the testing environment web driver options.
