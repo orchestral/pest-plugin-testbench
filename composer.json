@@ -23,6 +23,7 @@
         "pestphp/pest-plugin-laravel": "^2.2"
     },
     "require-dev": {
+        "orchestra/testbench-dusk": "^8.19.1",
         "pestphp/pest-dev-tools": "^2.9"
     },
     "config": {
