@@ -12,20 +12,6 @@ class DuskTestCase extends \Orchestra\Testbench\Dusk\TestCase
     use DatabaseMigrations, WithWorkbench;
 
     /**
-     * The base serve host URL to use while testing the application.
-     *
-     * @var string
-     */
-    protected static $baseServeHost = '127.0.0.1';
-
-    /**
-     * The base serve port to use while testing the application.
-     *
-     * @var int
-     */
-    protected static $baseServePort = 8000;
-
-    /**
      * Prepare the testing environment web driver options.
      *
      * @return void
