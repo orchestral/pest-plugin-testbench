@@ -17,7 +17,6 @@ class DuskTestCase extends \Orchestra\Testbench\Dusk\TestCase
      *
      * @return void
      */
-    #[BeforeClass]
     public static function defineWebDriverOptions()
     {
         Options::$providesApplicationServer = false;

@@ -18,14 +18,14 @@
     },
     "require": {
         "php": "^8.1",
-        "orchestra/testbench": "^8.19",
+        "orchestra/testbench": "^8.20",
         "pestphp/pest": "^2.12",
         "pestphp/pest-plugin-laravel": "^2.2",
         "symfony/polyfill-php82": "^1.28",
         "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
-        "orchestra/testbench-dusk": "^8.19.1",
+        "orchestra/testbench-dusk": "^8.20",
         "pestphp/pest-dev-tools": "^2.9"
     },
     "config": {
@@ -36,12 +36,26 @@
         }
     },
     "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare",
+            "@php vendor/bin/dusk-updater detect --auto-update"
+        ],
+        "clear": "@php testbench package:purge-skeleton --ansi",
+        "prepare": "@php testbench package:discover --ansi",
         "lint": [
             "@php vendor/bin/rector",
             "@php vendor/bin/phpstan analyse --ansi",
             "@php vendor/bin/pint"
         ],
         "test": "@php vendor/bin/pest --colors=always",
+        "dusk:serve": [
+            "@php vendor/bin/testbench-dusk package:create-sqlite-db",
+            "@php vendor/bin/testbench-dusk serve"
+        ],
+        "dusk": [
+            "@php vendor/bin/pest -c phpunit.dusk.xml --colors=always"
+        ],
         "ci": [
             "@lint",
             "@test"
