@@ -39,7 +39,6 @@
         "post-autoload-dump": [
             "@clear",
             "@prepare",
-            "@php vendor/bin/dusk-updater detect --auto-update"
         ],
         "clear": "@php testbench package:purge-skeleton --ansi",
         "prepare": "@php testbench package:discover --ansi",
@@ -49,11 +48,13 @@
             "@php vendor/bin/pint"
         ],
         "test": "@php vendor/bin/pest --colors=always",
+        "dusk:prepare": "@php vendor/bin/dusk-updater detect --auto-update",
         "dusk:serve": [
             "@php vendor/bin/testbench-dusk package:create-sqlite-db",
             "@php vendor/bin/testbench-dusk serve"
         ],
         "dusk": [
+            "@dusk:prepare",
             "@php vendor/bin/pest -c phpunit.dusk.xml --colors=always"
         ],
         "ci": [
