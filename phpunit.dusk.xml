@@ -23,7 +23,7 @@
 >
     <testsuites>
         <testsuite name="default">
-            <directory suffix=".php">./tests/Feature</directory>
+            <directory suffix=".php">./tests/Browser</directory>
         </testsuite>
     </testsuites>
     <source>
@@ -32,6 +32,6 @@
         </include>
     </source>
     <php>
-        <server name="DB_CONNECTION" value="testing"/>
+        <server name="DB_CONNECTION" value="sqlite"/>
     </php>
 </phpunit>
