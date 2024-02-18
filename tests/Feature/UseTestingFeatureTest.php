@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Attributes\WithConfig;
 use Orchestra\Testbench\Attributes\WithMigration;
 
 use function Orchestra\Testbench\Pest\usesTestingFeature;
+
+uses(LazilyRefreshDatabase::class);
 
 usesTestingFeature(
     new WithConfig('testbench.usesTestingFeature', true),
@@ -24,6 +27,6 @@ it('can resolve use `usesTestingFeature` helper', function () {
     expect(Schema::hasTable('notifications'))->toBe(false);
     expect(Schema::hasTable('jobs'))->toBe(true);
 
-    expect(RefreshDatabaseState::$migrated)->toBe(false);
+    expect(RefreshDatabaseState::$migrated)->toBe(true);
     expect(RefreshDatabaseState::$lazilyRefreshed)->toBe(true);
 });

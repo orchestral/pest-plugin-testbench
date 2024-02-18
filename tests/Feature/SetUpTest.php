@@ -1,11 +1,15 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\Attributes\ResetRefreshDatabaseState;
 use Orchestra\Testbench\Attributes\WithMigration;
 
 use function Orchestra\Testbench\Pest\setUp;
+
+uses(LazilyRefreshDatabase::class);
 
 setUp(function ($parent) {
     $this->afterApplicationCreated(function () {
@@ -14,6 +18,8 @@ setUp(function ($parent) {
 
     $this->beforeApplicationDestroyed(function () {
         config(['testbench.tearDown' => true]);
+
+        ResetRefreshDatabaseState::run();
     });
 
     $this->usesTestingFeature(new WithMigration('laravel', 'queue'));
@@ -24,6 +30,7 @@ setUp(function ($parent) {
 it('can execute default setUpTheEnvironment via `setUp` helper', function () {
     expect($this->setUpHasRun)->toBe(true);
     expect($this->app)->toBeInstanceOf(Application::class);
+    expect(config('database.default'))->toBe('testing');
 });
 
 it('can resolve `afterApplicationCreated` via `setUp` helper', function () {
@@ -36,7 +43,7 @@ it('can resolve `usesTestingFeature` via `setUp` helper', function () {
     expect(Schema::hasTable('notifications'))->toBe(false);
     expect(Schema::hasTable('jobs'))->toBe(true);
 
-    expect(RefreshDatabaseState::$migrated)->toBe(false);
+    expect(RefreshDatabaseState::$migrated)->toBe(true);
     expect(RefreshDatabaseState::$lazilyRefreshed)->toBe(true);
 });
 
