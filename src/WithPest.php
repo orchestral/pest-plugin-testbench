@@ -144,7 +144,9 @@ trait WithPest
      */
     public function resetRefreshDatabaseState()
     {
-        ResetRefreshDatabaseState::run();
+        $this->beforeApplicationDestroyed(function () {
+            ResetRefreshDatabaseState::run();
+        });
 
         return $this;
     }
