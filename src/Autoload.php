@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Orchestra\Testbench\Pest;
 
 use Closure;
-use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Arr;
 use Orchestra\Testbench\Attributes\ResetRefreshDatabaseState;
 use Pest\Plugin;

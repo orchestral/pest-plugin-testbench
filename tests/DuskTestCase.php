@@ -5,7 +5,6 @@ namespace Orchestra\Testbench\Pest\Tests;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\Options;
-use PHPUnit\Framework\Attributes\BeforeClass;
 
 class DuskTestCase extends \Orchestra\Testbench\Dusk\TestCase
 {
