@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Attributes\ResetRefreshDatabaseState;
 
+use function Orchestra\Testbench\laravel_version_compare;
 use function Orchestra\Testbench\Pest\setUp;
 
 uses(LazilyRefreshDatabase::class);
@@ -33,7 +34,7 @@ it('does not leak between tests', function () {
     expect(Schema::hasTable('notifications'))->toBe(false);
     expect(Schema::hasTable('jobs'))->toBe(false);
 
-    expect(RefreshDatabaseState::$migrated)->toBe(true);
+    expect(RefreshDatabaseState::$migrated)->toBe(laravel_version_compare('11.0.0', '>=') ? true : false);
     expect(RefreshDatabaseState::$lazilyRefreshed)->toBe(true);
 })->resetRefreshDatabaseState();
 

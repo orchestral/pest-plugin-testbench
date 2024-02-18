@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Attributes\WithConfig;
 use Orchestra\Testbench\Attributes\WithMigration;
 
+use function Orchestra\Testbench\laravel_version_compare;
 use function Orchestra\Testbench\Pest\usesTestingFeature;
 
 uses(LazilyRefreshDatabase::class);
@@ -27,6 +28,6 @@ it('can resolve use `usesTestingFeature` helper', function () {
     expect(Schema::hasTable('notifications'))->toBe(false);
     expect(Schema::hasTable('jobs'))->toBe(true);
 
-    expect(RefreshDatabaseState::$migrated)->toBe(true);
+    expect(RefreshDatabaseState::$migrated)->toBe(laravel_version_compare('11.0.0', '>=') ? true : false);
     expect(RefreshDatabaseState::$lazilyRefreshed)->toBe(true);
 });
