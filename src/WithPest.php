@@ -119,6 +119,11 @@ trait WithPest
         \call_user_func(Closure::bind($callback, $this));
     }
 
+    /**
+     * Define routes using Pest.
+     *
+     * @param  \Illuminate\Routing\Router  $router
+     */
     protected function defineRoutesUsingPest($router): void
     {
         if (\is_null($callback = Hook::unpack('@defineRoutes', TestSuite::getInstance()->getFilename()))) {
@@ -128,6 +133,11 @@ trait WithPest
         \call_user_func(Closure::bind($callback, $this), $router);
     }
 
+    /**
+     * Define web routes using Pest.
+     *
+     * @param  \Illuminate\Routing\Router  $router
+     */
     protected function defineWebRoutesUsingPest($router): void
     {
         if (\is_null($callback = Hook::unpack('@defineWebRoutes', TestSuite::getInstance()->getFilename()))) {
