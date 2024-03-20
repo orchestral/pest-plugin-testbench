@@ -3,7 +3,7 @@ Pest Plugin for Testbench
 
 Pest Plugin for Testbench is a small packages to use PestPHP for Laravel Packages.
 
-[![tests](https://github.com/orchestral/pest-plugin-testbench/workflows/tests/badge.svg?branch=2.x)](https://github.com/orchestral/pest-plugin-testbench/actions?query=workflow%3Atests+branch%3A2.x)
+[![Tests](https://github.com/orchestral/pest-plugin-testbench/actions/workflows/tests.yaml/badge.svg)](https://github.com/orchestral/pest-plugin-testbench/actions/workflows/tests.yaml)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/pest-plugin-testbench/v/stable)](https://packagist.org/packages/orchestra/pest-plugin-testbench)
 [![Total Downloads](https://poser.pugx.org/orchestra/pest-plugin-testbench/downloads)](https://packagist.org/packages/orchestra/pest-plugin-testbench)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/pest-plugin-testbench/v/unstable)](https://packagist.org/packages/orchestra/pest-plugin-testbench)
