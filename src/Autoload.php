@@ -121,5 +121,5 @@ function usesTestingFeature(...$attributes): void
  */
 function resetRefreshDatabaseState(): void
 {
-    usesTestingFeature(new ResetRefreshDatabaseState());
+    usesTestingFeature(new ResetRefreshDatabaseState);
 }
