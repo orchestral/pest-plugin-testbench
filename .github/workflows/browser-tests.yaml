@@ -54,7 +54,7 @@ jobs:
         run: php vendor/bin/testbench-dusk package:create-sqlite-db
 
       - name: Start Chrome Driver
-        run: ./vendor/laravel/dusk/bin/chromedriver-linux &
+        run: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515 &
 
       - name: Run Laravel Server
         run: php vendor/bin/testbench-dusk serve --no-reload &

@@ -49,15 +49,15 @@
         "clear": "@php testbench package:purge-skeleton --ansi",
         "prepare": "@php testbench package:discover --ansi",
         "lint": [
-            "@php vendor/bin/rector",
-            "@php vendor/bin/pint",
+            "@php vendor/bin/rector --ansi",
+            "@php vendor/bin/pint --ansi",
             "@php vendor/bin/phpstan analyse --verbose --ansi"
         ],
         "test": "@php vendor/bin/pest --colors=always",
-        "dusk:prepare": "@php vendor/bin/dusk-updater detect --auto-update",
+        "dusk:prepare": "@php vendor/bin/dusk-updater detect --auto-update --ansi",
         "dusk:serve": [
-            "@php vendor/bin/testbench-dusk package:create-sqlite-db",
-            "@php vendor/bin/testbench-dusk serve"
+            "@php vendor/bin/testbench-dusk package:create-sqlite-db --ansi",
+            "@php vendor/bin/testbench-dusk serve --ansi"
         ],
         "dusk": [
             "@dusk:prepare",
