@@ -50,7 +50,7 @@ jobs:
           composer show -D
 
       - name: Execute tests
-        run: vendor/bin/pest
+        run: vendor/bin/pest --display-deprecations --fail-on-deprecation
 
   tests-testbench-8:
     runs-on: ${{ matrix.os }}
@@ -94,4 +94,4 @@ jobs:
           composer show -D
 
       - name: Execute tests
-        run: vendor/bin/pest
+        run: vendor/bin/pest --display-deprecations --fail-on-deprecation
