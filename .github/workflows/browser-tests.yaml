@@ -18,13 +18,14 @@ jobs:
         php:
           - 8.2
           - 8.3
+          - 8.4
         dependencies:
           - "highest"
           - "lowest"
         experimental:
           - false
 
-    name: L11/PHP:${{ matrix.php }} on ${{ matrix.os }} (${{ matrix.dependencies }})
+    name: Laravel:11 / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
@@ -60,7 +61,7 @@ jobs:
         run: php vendor/bin/testbench-dusk serve --no-reload &
 
       - name: Execute tests
-        run: vendor/bin/pest -c phpunit.dusk.xml
+        run: vendor/bin/pest -c phpunit.dusk.xml --display-deprecations --fail-on-deprecation
         env:
           APP_URL: http://127.0.0.1:8000
           DUSK_SERVE_PORT: 8000

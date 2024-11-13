@@ -19,13 +19,14 @@ jobs:
         php:
           - 8.2
           - 8.3
+          - 8.4
         dependencies:
           - "highest"
           - "lowest"
         experimental:
           - false
 
-    name: L11/PHP:${{ matrix.php }} on ${{ matrix.os }} (${{ matrix.dependencies }})
+    name: Laravel:11 / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
@@ -49,4 +50,4 @@ jobs:
           composer show -D
 
       - name: Execute tests
-        run: vendor/bin/pest
+        run: vendor/bin/pest --display-deprecations --fail-on-deprecation
