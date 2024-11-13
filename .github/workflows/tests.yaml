@@ -26,7 +26,7 @@ jobs:
         experimental:
           - false
 
-    name: L11/PHP:${{ matrix.php }} on ${{ matrix.os }} (${{ matrix.dependencies }})
+    name: Laravel:11 / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
@@ -70,7 +70,7 @@ jobs:
         experimental:
           - false
 
-    name: L10/PHP:${{ matrix.php }} on ${{ matrix.os }} (${{ matrix.dependencies }})
+    name: Laravel:10 / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
