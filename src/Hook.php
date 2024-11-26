@@ -12,7 +12,7 @@ final class Hook
     /**
      * The cached hooks.
      *
-     * @var array<string, array<string, \Closure|array|null>>
+     * @var array<string, array<string, array|Closure|null>>
      */
     public static array $cachedHooks = [
         '@setUp' => [],

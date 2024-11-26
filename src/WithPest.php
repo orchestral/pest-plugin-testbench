@@ -11,7 +11,6 @@ trait WithPest
     /**
      * Prepare the testing environment before the running the test case.
      *
-     *
      * @codeCoverageIgnore
      */
     protected static function setUpBeforeClassUsingPest(): void
@@ -25,7 +24,6 @@ trait WithPest
 
     /**
      * Clean up the testing environment before the next test case.
-     *
      *
      * @codeCoverageIgnore
      */
