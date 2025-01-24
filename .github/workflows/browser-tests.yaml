@@ -19,13 +19,16 @@ jobs:
           - 8.2
           - 8.3
           - 8.4
+        testbench:
+          - 9
+          - 10
         dependencies:
           - "highest"
           - "lowest"
         experimental:
           - false
 
-    name: Laravel:11 / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
+    name: Testbench:${{ matrix.testbench }} / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
@@ -42,7 +45,7 @@ jobs:
         uses: "ramsey/composer-install@v3"
         with:
           dependency-versions: "${{ matrix.dependencies }}"
-          composer-options: "--prefer-dist --no-cache --with=orchestra/testbench-dusk:^9.0"
+          composer-options: "--prefer-dist --no-cache --with=orchestra/testbench-dusk:${{ matrix.os == 'ubuntu-latest' && '^' || '~' }}${{ matrix.testbench }}.0"
 
       - name: Installed dependencies
         run: |
