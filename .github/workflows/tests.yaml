@@ -46,7 +46,7 @@ jobs:
         uses: "ramsey/composer-install@v3"
         with:
           dependency-versions: "${{ matrix.dependencies }}"
-          composer-options: "--prefer-dist --no-cache --with=orchestra/testbench:${{ matrix.os === 'ubuntu-latest' && '^' || '~' }}${{ matrix.testbench }}.0"
+          composer-options: "--prefer-dist --no-cache --with=orchestra/testbench:${{ matrix.os == 'ubuntu-latest' && '^' || '~' }}${{ matrix.testbench }}.0"
 
       - name: Installed dependencies
         run: |
