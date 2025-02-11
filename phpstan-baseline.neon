@@ -1,2 +1,7 @@
 parameters:
-	ignoreErrors: []
+	ignoreErrors:
+		-
+			message: '#^Trait Orchestra\\Testbench\\Pest\\WithPest is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: src/WithPest.php
