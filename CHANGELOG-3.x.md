@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/pest-plugin-testbench`.
 
+## 3.2.1
+
+Released: 2025-02-18
+
+### Changes
+
+* Use `orchestra/sidekick`.
+
 ## 3.2.0
 
 Released: 2025-01-24
