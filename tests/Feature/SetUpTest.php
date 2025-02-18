@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\Attributes\ResetRefreshDatabaseState;
 use Orchestra\Testbench\Attributes\WithMigration;
 
-use function Orchestra\Testbench\laravel_version_compare;
+use function Orchestra\Sidekick\laravel_version_compare;
 use function Orchestra\Testbench\Pest\setUp;
 
 uses(LazilyRefreshDatabase::class);
