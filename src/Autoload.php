@@ -92,6 +92,8 @@ function defineWebRoutes(Closure $callback): void
 
 /**
  * Define "afterApplicationCreated" hook for the test case.
+ *
+ * @param  \Closure():void  $callback
  */
 function afterApplicationCreated(Closure $callback): void
 {
@@ -100,6 +102,8 @@ function afterApplicationCreated(Closure $callback): void
 
 /**
  * Define "beforeApplicationDestroyed" hook for the test case.
+ *
+ * @param  \Closure():void  $callback
  */
 function beforeApplicationDestroyed(Closure $callback): void
 {
