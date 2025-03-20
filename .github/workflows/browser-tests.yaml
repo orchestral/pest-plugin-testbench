@@ -2,6 +2,8 @@ name: browser-tests
 
 on:
   push:
+    branches:
+      - '*.x'
   pull_request:
   workflow_dispatch:
   schedule:
@@ -24,7 +26,6 @@ jobs:
           - 10
         dependencies:
           - "highest"
-          - "lowest"
         experimental:
           - false
 
