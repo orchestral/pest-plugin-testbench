@@ -21,8 +21,7 @@
         "orchestra/sidekick": "^1.0",
         "orchestra/testbench": "^8.32|^9.10",
         "pestphp/pest": "^2.36",
-        "pestphp/pest-plugin-laravel": "^2.2",
-        "symfony/polyfill-php83": "^1.31"
+        "pestphp/pest-plugin-laravel": "^2.2"
     },
     "require-dev": {
         "laravel/pint": "^1.11",
