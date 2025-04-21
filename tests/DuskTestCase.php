@@ -19,5 +19,8 @@ class DuskTestCase extends \Orchestra\Testbench\Dusk\TestCase
     public static function defineWebDriverOptions()
     {
         Options::$providesApplicationServer = false;
+
+        Options::addArgument('--disable-remote-fonts');
+        Options::addArgument('--force-prefers-reduced-motion');
     }
 }
