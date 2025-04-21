@@ -21,7 +21,6 @@ class DuskTestCase extends \Orchestra\Testbench\Dusk\TestCase
     {
         Browser::$waitSeconds = 60;
 
-        Options::$w3cCompliant = true;
         Options::$providesApplicationServer = false;
 
         Options::noSandbox()

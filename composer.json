@@ -17,10 +17,18 @@
         }
     },
     "require": {
+<<<<<<< HEAD
         "php": "^8.2",
         "orchestra/testbench": "^9.13.0|^10.2.1",
         "pestphp/pest": "^3.8.2",
         "pestphp/pest-plugin-laravel": "^3.2"
+=======
+        "php": "^8.1",
+        "orchestra/sidekick": "^1.0",
+        "orchestra/testbench": "^8.32|^9.10",
+        "pestphp/pest": "^2.36",
+        "pestphp/pest-plugin-laravel": "^2.2"
+>>>>>>> 2.x
     },
     "require-dev": {
         "laravel/pint": "^1.22",
