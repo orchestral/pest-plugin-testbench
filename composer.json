@@ -18,15 +18,15 @@
     },
     "require": {
         "php": "^8.2",
-        "orchestra/testbench": "^9.12.0|^10.1.0",
-        "pestphp/pest": "^3.7.4",
-        "pestphp/pest-plugin-laravel": "^3.1"
+        "orchestra/testbench": "^9.13.0|^10.2.1",
+        "pestphp/pest": "^3.8.2",
+        "pestphp/pest-plugin-laravel": "^3.2"
     },
     "require-dev": {
-        "laravel/pint": "^1.21",
-        "orchestra/testbench-dusk": "^9.15.0|^10.1.0",
-        "phpstan/phpstan": "^2.1.8",
-        "rector/rector": "^2.0",
+        "laravel/pint": "^1.22",
+        "orchestra/testbench-dusk": "^9.16.0|^10.2.1",
+        "phpstan/phpstan": "^2.1.22",
+        "rector/rector": "^2.0.11",
         "symfony/var-dumper": "^7.0"
     },
     "config": {
