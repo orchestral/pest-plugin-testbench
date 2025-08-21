@@ -18,13 +18,13 @@
     },
     "require": {
         "php": "^8.2",
-        "orchestra/testbench": "^9.13.0|^10.2.1",
+        "orchestra/testbench": "^9.15.0|^10.6.0",
         "pestphp/pest": "^3.8.2",
         "pestphp/pest-plugin-laravel": "^3.2"
     },
     "require-dev": {
-        "laravel/pint": "^1.22",
-        "orchestra/testbench-dusk": "^9.16.0|^10.2.1",
+        "laravel/pint": "^1.24",
+        "orchestra/testbench-dusk": "^9.18.0|^10.6.0",
         "phpstan/phpstan": "^2.1.12",
         "rector/rector": "^2.0.11",
         "symfony/var-dumper": "^7.0"
@@ -45,7 +45,7 @@
         "prepare": "@php testbench package:discover --ansi",
         "lint": [
             "@php vendor/bin/rector --ansi",
-            "@php vendor/bin/pint --ansi",
+            "@php vendor/bin/pint --ansi --parallel",
             "@php vendor/bin/phpstan analyse --verbose --ansi"
         ],
         "test": "@php vendor/bin/pest --colors=always",
