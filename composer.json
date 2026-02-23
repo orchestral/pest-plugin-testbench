@@ -37,7 +37,9 @@
             "pestphp/pest-plugin": true
         },
         "audit": {
-            "block-insecure": false
+            "ignore": [
+                "CVE-2026-24765"
+            ]
         },
         "preferred-install": "dist",
         "sort-packages": true
