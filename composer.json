@@ -30,11 +30,11 @@
         "symfony/var-dumper": "^7.0"
     },
     "config": {
-        "sort-packages": true,
-        "preferred-install": "dist",
         "allow-plugins": {
             "pestphp/pest-plugin": true
-        }
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
     },
     "scripts": {
         "post-autoload-dump": [

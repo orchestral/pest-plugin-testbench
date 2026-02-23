@@ -2,6 +2,18 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/pest-plugin-testbench`.
 
+## 3.3.0
+
+Released: 2026-02-23
+
+### Changes
+
+* Support `Orchestra\Testbench\Concerns\WithFixtures` feature.
+
+### Removed
+
+* Remove `symfony/polyfill-php83` dependencies.
+
 ## 3.2.1
 
 Released: 2025-02-18
