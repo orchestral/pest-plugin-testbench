@@ -26,6 +26,9 @@ jobs:
           - "highest"
         experimental:
           - false
+        exclude:
+          - php: 8.5
+            testbench: 9
 
     name: Testbench:${{ matrix.testbench }} / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
