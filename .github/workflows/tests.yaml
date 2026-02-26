@@ -23,6 +23,7 @@ jobs:
         testbench:
           - 9
           - 10
+          - 11
         dependencies:
           - "highest"
           - "lowest"

@@ -18,13 +18,13 @@
     },
     "require": {
         "php": "^8.3",
-        "orchestra/testbench": "^9.16.0|^10.9.0",
+        "orchestra/testbench": "^9.16.0|^10.9.0|^11.0.0",
         "pestphp/pest": "^4.0.0",
         "pestphp/pest-plugin-laravel": "^4.0.0"
     },
     "require-dev": {
         "laravel/pint": "^1.24",
-        "orchestra/testbench-dusk": "^9.18.0|^10.6.0",
+        "orchestra/testbench-dusk": "^9.18.0|^10.6.0|^11.0.0",
         "phpstan/phpstan": "^2.1.12",
         "rector/rector": "^2.0.11",
         "symfony/var-dumper": "^7.0"
