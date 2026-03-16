@@ -9,8 +9,10 @@ it('can_browse_default_laravel_page')
         $browser->visit('/')
             ->pause(500)
             ->assertSee(
-                laravel_version_compare('12.0', '>=')
-                    ? 'Laravel has an incredibly rich ecosystem.'
-                    : 'Documentation'
+                match (true) {
+                    laravel_version_compare('13.0', '>=') => 'Let\'s get started',
+                    laravel_version_compare('12.0', '>=') => 'Laravel has an incredibly rich ecosystem.',
+                    default => 'Documentation',
+                }
             );
     });
