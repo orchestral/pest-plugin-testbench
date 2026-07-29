@@ -22,7 +22,6 @@ jobs:
           - 8.4
           - 8.5
         testbench:
-          - 9
           - 10
           - 11
         dependencies:
