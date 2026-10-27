@@ -1,7 +1,6 @@
 <?php
 
 use Laravel\Dusk\Browser;
-
 use Orchestra\Testbench\Pest\Tests\DuskTestCase;
 
 use function Orchestra\Testbench\laravel_version_compare;

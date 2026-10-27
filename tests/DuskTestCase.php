@@ -7,8 +7,6 @@ use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\Options;
 
-use function Orchestra\Testbench\Pest\usesWebServer;
-
 class DuskTestCase extends \Orchestra\Testbench\Pest\Dusk\TestCase
 {
     use DatabaseMigrations;

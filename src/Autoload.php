@@ -128,7 +128,7 @@ function resetRefreshDatabaseState(): void
     usesTestingFeature(new ResetRefreshDatabaseState);
 }
 
-function usesWebServer(string $host = '127.0.0.1', int $port = 8000, int $timeout = 6000)
+function usesWebServer(string $host = '127.0.0.1', int $port = 8000, int $timeout = 6000): \Orchestra\Testbench\Pest\Process\WebServer
 {
     return new Process\WebServer($host, $port, $timeout);
 }

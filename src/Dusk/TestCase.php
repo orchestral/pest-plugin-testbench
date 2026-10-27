@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Orchestra\Testbench\Pest\Dusk;
 
 use Orchestra\Testbench\Dusk\Options;
@@ -16,8 +18,6 @@ abstract class TestCase extends \Orchestra\Testbench\Dusk\TestCase
 
     /**
      * Teardown the test environment.
-     *
-     * @return void
      */
     #[\Override]
     protected function tearDown(): void
@@ -34,8 +34,6 @@ abstract class TestCase extends \Orchestra\Testbench\Dusk\TestCase
      *
      * @internal
      *
-     * @return void
-     *
      * @codeCoverageIgnore
      */
     #[\Override]
@@ -50,10 +48,6 @@ abstract class TestCase extends \Orchestra\Testbench\Dusk\TestCase
      * Begin serving on a given host and port.
      *
      * @internal
-     *
-     * @param  string  $host
-     * @param  int  $port
-     * @return void
      *
      * @throws \Orchestra\Testbench\Dusk\Exceptions\UnableToStartServer
      */
@@ -73,8 +67,6 @@ abstract class TestCase extends \Orchestra\Testbench\Dusk\TestCase
      * shut down all servers if we.
      *
      * @api
-     *
-     * @return void
      */
     #[\Override]
     public static function stopServing(): void

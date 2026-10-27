@@ -36,7 +36,7 @@ class WebServer
         $this->stop();
         $this->startServer();
 
-        register_shutdown_function(function () {
+        register_shutdown_function(function (): void {
             $this->stop();
         });
     }
@@ -46,7 +46,7 @@ class WebServer
      */
     public function stop(): void
     {
-        if (! isset($this->process)) {
+        if (! $this->process instanceof \Orchestra\Testbench\Foundation\Process\ProcessDecorator) {
             return;
         }
 
@@ -65,7 +65,7 @@ class WebServer
 
     public function visit(string $path): ArrayablePendingAwaitablePage|PendingAwaitablePage
     {
-        if (! isset($this->process)) {
+        if (! $this->process instanceof \Orchestra\Testbench\Foundation\Process\ProcessDecorator) {
             $this->start();
         }
 
@@ -80,7 +80,7 @@ class WebServer
      */
     public function clearOutput(): void
     {
-        if (! isset($this->process) || $this->process->isOutputDisabled()) {
+        if (! $this->process instanceof \Orchestra\Testbench\Foundation\Process\ProcessDecorator || $this->process->isOutputDisabled()) {
             return;
         }
 
@@ -105,7 +105,6 @@ class WebServer
         $deadline = hrtime(true) + self::STARTUP_TIMEOUT * 1_000_000_000;
 
         do {
-            /** @var resource|false $socket */
             $socket = @fsockopen($this->host, $this->port, $errorNumber, $errorString, 0.1);
 
             if ($socket !== false) {
