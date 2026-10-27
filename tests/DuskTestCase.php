@@ -7,7 +7,9 @@ use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\Options;
 
-class DuskTestCase extends \Orchestra\Testbench\Dusk\TestCase
+use function Orchestra\Testbench\Pest\usesWebServer;
+
+class DuskTestCase extends \Orchestra\Testbench\Pest\Dusk\TestCase
 {
     use DatabaseMigrations;
     use WithWorkbench;
@@ -20,8 +22,6 @@ class DuskTestCase extends \Orchestra\Testbench\Dusk\TestCase
     public static function defineWebDriverOptions()
     {
         Browser::$waitSeconds = 60;
-
-        Options::$providesApplicationServer = false;
 
         Options::noSandbox()
             ->addArgument('--incognito')

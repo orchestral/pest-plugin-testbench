@@ -1,6 +1,5 @@
 <?php
 
-use Orchestra\Testbench\Pest\Tests\DuskTestCase;
 use Orchestra\Testbench\Pest\Tests\TestCase;
 
 /*
@@ -14,5 +13,4 @@ use Orchestra\Testbench\Pest\Tests\TestCase;
 |
 */
 
-uses(DuskTestCase::class)->in('Browser');
 uses(TestCase::class)->in('Unit', 'Feature');

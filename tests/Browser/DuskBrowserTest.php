@@ -2,12 +2,17 @@
 
 use Laravel\Dusk\Browser;
 
+use Orchestra\Testbench\Pest\Tests\DuskTestCase;
+
 use function Orchestra\Testbench\laravel_version_compare;
 
-it('can_browse_default_laravel_page')
-    ->browse(function (Browser $browser) {
+uses(DuskTestCase::class)->group('dusk');
+
+it('can browse default laravel page', function () {
+    $this->browse(function (Browser $browser) {
         $browser->visit('/')
-            ->pause(500)
+            ->pause(1000)
+            ->screenshot('default_laravel_page')
             ->assertSee(
                 match (true) {
                     laravel_version_compare('13.0', '>=') => 'Let\'s get started',
@@ -16,3 +21,4 @@ it('can_browse_default_laravel_page')
                 }
             );
     });
+});
