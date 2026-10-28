@@ -106,8 +106,10 @@ jobs:
         run: |
           composer show -D
 
-      - name: Upgrade Chrome Driver
-        run: php vendor/bin/dusk-updater detect --auto-update
+      - name: Install Playwright
+        run: |
+          npm ci
+          npx playwright install
 
       - name: Create SQLite Database
         run: php vendor/bin/testbench-dusk package:create-sqlite-db
