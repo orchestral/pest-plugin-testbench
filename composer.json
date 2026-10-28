@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.24",
-        "orchestra/testbench-dusk": "dev-11/web-server as 11.999.999",
+        "orchestra/testbench-dusk": "^11.7.0",
         "pestphp/pest-plugin-browser": "^5.0",
         "phpstan/phpstan": "^2.1.12",
         "rector/rector": "^2.0.11",
