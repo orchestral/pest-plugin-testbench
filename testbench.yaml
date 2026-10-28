@@ -1,1 +1,6 @@
 migrations: false
+
+workbench:
+  start: '/'
+  discovers:
+    web: true

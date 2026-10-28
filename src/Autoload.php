@@ -127,3 +127,8 @@ function resetRefreshDatabaseState(): void
 {
     usesTestingFeature(new ResetRefreshDatabaseState);
 }
+
+function usesWebServer(string $host = '127.0.0.1', int $port = 8001, int $timeout = 6000): RemoteWebServer
+{
+    return new RemoteWebServer($host, $port, $timeout);
+}

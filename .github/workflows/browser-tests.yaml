@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  tests-testbench-9:
+  browser-tests:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -38,8 +38,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, intl, fileinfo, :php-psr
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, intl, fileinfo, sockets, :php-psr
           coverage: none
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22.x'
 
       - name: Install dependencies
         uses: ramsey/composer-install@v4
@@ -51,17 +56,17 @@ jobs:
         run: |
           composer show -D
 
-      - name: Upgrade Chrome Driver
-        run: php vendor/bin/dusk-updater detect --auto-update
+      - name: Upgrade Chrome Driver & NPM
+        run: |
+          php vendor/bin/dusk-updater detect --auto-update
+          npm ci
+          npx install playwright
 
       - name: Create SQLite Database
         run: php vendor/bin/testbench-dusk package:create-sqlite-db
 
       - name: Start Chrome Driver
         run: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515 &
-
-      - name: Run Laravel Server
-        run: php vendor/bin/testbench-dusk serve --no-reload &
 
       - name: Execute tests
         run: vendor/bin/pest -c phpunit.dusk.xml --display-deprecations --fail-on-deprecation

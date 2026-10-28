@@ -24,9 +24,11 @@
     },
     "require-dev": {
         "laravel/pint": "^1.24",
-        "orchestra/testbench-dusk": "^11.0.0",
+        "orchestra/testbench-dusk": "^11.7.0",
+        "pestphp/pest-plugin-browser": "^5.0",
         "phpstan/phpstan": "^2.1.12",
         "rector/rector": "^2.0.11",
+        "spatie/laravel-ray": "^1.43",
         "symfony/var-dumper": "^7.0|^8.0"
     },
     "config": {
