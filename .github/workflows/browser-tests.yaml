@@ -51,8 +51,10 @@ jobs:
         run: |
           composer show -D
 
-      - name: Upgrade Chrome Driver
-        run: php vendor/bin/dusk-updater detect --auto-update
+      - name: Upgrade Chrome Driver & NPM
+        run: |
+          php vendor/bin/dusk-updater detect --auto-update
+          npm ci
 
       - name: Create SQLite Database
         run: php vendor/bin/testbench-dusk package:create-sqlite-db
