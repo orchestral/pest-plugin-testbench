@@ -7,7 +7,7 @@ use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\Dusk\Options;
 
-class DuskTestCase extends \Orchestra\Testbench\Pest\Dusk\TestCase
+abstract class DuskTestCase extends \Orchestra\Testbench\Dusk\TestCase
 {
     use DatabaseMigrations;
     use WithWorkbench;
@@ -22,6 +22,7 @@ class DuskTestCase extends \Orchestra\Testbench\Pest\Dusk\TestCase
         Browser::$waitSeconds = 60;
 
         Options::noSandbox()
+            ->headless()
             ->addArgument('--incognito')
             ->addArgument('--disable-popup-blocking')
             ->addArgument('--disable-remote-fonts')

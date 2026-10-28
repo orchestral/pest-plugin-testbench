@@ -7,8 +7,8 @@ use function Orchestra\Testbench\laravel_version_compare;
 
 uses(DuskTestCase::class)->group('dusk');
 
-it('can browse default laravel page', function () {
-    $this->browse(function (Browser $browser) {
+it('can browse default laravel page')
+    ->browse(function (Browser $browser) {
         $browser->visit('/')
             ->pause(1000)
             ->screenshot('default_laravel_page')
@@ -20,4 +20,3 @@ it('can browse default laravel page', function () {
                 }
             );
     });
-});
