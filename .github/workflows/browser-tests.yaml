@@ -28,7 +28,7 @@ jobs:
         experimental:
           - false
 
-    name: Testbench:${{ matrix.testbench }} / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
+    name: Dusk / Testbench:${{ matrix.testbench }} / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
@@ -66,7 +66,7 @@ jobs:
           APP_URL: http://127.0.0.1:8000
           DUSK_SERVE_PORT: 8000
 
-  tests-pest-browser:
+  tests-playwright:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -83,7 +83,7 @@ jobs:
         experimental:
           - false
 
-    name: Testbench:${{ matrix.testbench }} / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
+    name: Playwright / Testbench:${{ matrix.testbench }} / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code

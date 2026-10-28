@@ -5,7 +5,7 @@ use Orchestra\Testbench\Pest\Tests\TestCase;
 use function Orchestra\Testbench\laravel_version_compare;
 use function Orchestra\Testbench\Pest\usesWebServer;
 
-uses(TestCase::class)->group('browser');
+uses(TestCase::class)->group('playwright');
 
 it('can browse default laravel page', function () {
     usesWebServer()
