@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  tests-testbench-dusk:
+  browser-tests:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
@@ -28,7 +28,7 @@ jobs:
         experimental:
           - false
 
-    name: Dusk / Testbench:${{ matrix.testbench }} / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
+    name: Testbench:${{ matrix.testbench }} / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
 
     steps:
       - name: Checkout code
@@ -55,6 +55,7 @@ jobs:
         run: |
           php vendor/bin/dusk-updater detect --auto-update
           npm ci
+          npx install playwright
 
       - name: Create SQLite Database
         run: php vendor/bin/testbench-dusk package:create-sqlite-db
@@ -62,62 +63,8 @@ jobs:
       - name: Start Chrome Driver
         run: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515 &
 
-      - name: Execute tests (using Dusk)
-        run: vendor/bin/pest -c phpunit.dusk.xml --display-deprecations --fail-on-deprecation --group=dusk
-        env:
-          APP_URL: http://127.0.0.1:8000
-          DUSK_SERVE_PORT: 8000
-
-  tests-playwright:
-    runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.experimental }}
-    strategy:
-      matrix:
-        os:
-          - "ubuntu-latest"
-        php:
-          - 8.4
-          - 8.5
-        testbench:
-          - 11
-        dependencies:
-          - "highest"
-        experimental:
-          - false
-
-    name: Playwright / Testbench:${{ matrix.testbench }} / PHP:${{ matrix.php }} / OS:${{ matrix.os }} ${{ matrix.dependencies == 'highest' && '⬆️' || '⬇️' }}
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, intl, fileinfo, :php-psr
-          coverage: none
-
-      - name: Install dependencies
-        uses: ramsey/composer-install@v4
-        with:
-          dependency-versions: "${{ matrix.dependencies }}"
-          composer-options: "--prefer-dist --no-cache --with=orchestra/testbench-dusk:${{ matrix.os == 'ubuntu-latest' && '^' || '~' }}${{ matrix.testbench }}.0"
-
-      - name: Installed dependencies
-        run: |
-          composer show -D
-
-      - name: Install Playwright
-        run: |
-          npm ci
-          npx playwright install
-
-      - name: Create SQLite Database
-        run: php vendor/bin/testbench-dusk package:create-sqlite-db
-
-      - name: Execute tests (using Pest Browser)
-        run: vendor/bin/pest -c phpunit.dusk.xml --display-deprecations --fail-on-deprecation --group=pest
+      - name: Execute tests
+        run: vendor/bin/pest -c phpunit.dusk.xml --display-deprecations --fail-on-deprecation
         env:
           APP_URL: http://127.0.0.1:8000
           DUSK_SERVE_PORT: 8000
