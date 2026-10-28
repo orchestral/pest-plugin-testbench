@@ -114,7 +114,7 @@ jobs:
       - name: Create SQLite Database
         run: php vendor/bin/testbench-dusk package:create-sqlite-db
 
-      - name: Execute tests (using Dusk)
+      - name: Execute tests (using Pest Browser)
         run: vendor/bin/pest --browser chrome -c phpunit.dusk.xml --display-deprecations --fail-on-deprecation --group=pest
         env:
           APP_URL: http://127.0.0.1:8000
